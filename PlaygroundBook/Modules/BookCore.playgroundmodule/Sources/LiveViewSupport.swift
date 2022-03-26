@@ -5,7 +5,7 @@
 //  Provides supporting functions for setting up a live view.
 //
 
-import UIKit
+import UIKit 
 import PlaygroundSupport
 
 /// Instantiates a new instance of a live view.
