@@ -9,9 +9,9 @@
 import UIKit
 import PlaygroundSupport
 
-@objc(BookCore_IntroViewController)
+@objc(BookCore_LiveViewController)
 
-public class IntroViewController: UIViewController, PlaygroundLiveViewMessageHandler, PlaygroundLiveViewSafeAreaContainer {
+public class LiveViewController: UIViewController, PlaygroundLiveViewMessageHandler, PlaygroundLiveViewSafeAreaContainer {
 	
 	//	@IBOutlet weak var secondParagraph: UILabel!
 //	@IBOutlet weak var thirdParagraph: UILabel!
