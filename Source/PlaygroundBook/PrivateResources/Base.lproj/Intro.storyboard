@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fcD-sv-Xiz">
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Book Core Intro View Controller-->
+        <scene sceneID="HVS-ZB-wEb">
+            <objects>
+                <viewController id="fcD-sv-Xiz" customClass="BookCore_IntroViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rh2-0a-zph">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="yOY-Ce-wGF">
+                                <rect key="frame" x="312" y="174" width="400" height="138.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yOY-Ce-wGF" secondAttribute="height" multiplier="557:193" id="Exe-xV-nIG"/>
+                                    <constraint firstAttribute="width" constant="400" id="l2f-NV-qlw"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfP-Ea-CQj">
+                                <rect key="frame" x="50" y="412.5" width="924" height="143.5"/>
+                                <string key="text">By 2050 nearly 2.5 billion people are projected to have some degree of hearing loss and at least 700 million will require hearing rehabilitation.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCU-vw-y4S">
+                                <rect key="frame" x="50" y="1285" width="924" height="41"/>
+                                <string key="text">Reference: Deafness and hearing loss. (2021). In Wikipedia. Retrieved April 07, 2022, from https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As such, Sign Language is a skill of rapidly increasing importance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42i-59-XoK">
+                                <rect key="frame" x="50" y="596" width="924" height="95.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASLearn aims to teach American Sign Language in a fun and interactive way." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfK-yP-3WR">
+                                <rect key="frame" x="50" y="751.5" width="924" height="95.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                <color key="textColor" name="customBlue"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qaR-nP-dw0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OfK-yP-3WR" firstAttribute="leading" secondItem="qaR-nP-dw0" secondAttribute="leading" constant="50" id="8up-gr-wGu"/>
+                            <constraint firstItem="42i-59-XoK" firstAttribute="leading" secondItem="qaR-nP-dw0" secondAttribute="leading" constant="50" id="Evu-4Z-dXp"/>
+                            <constraint firstAttribute="trailing" secondItem="OfK-yP-3WR" secondAttribute="trailing" constant="50" id="IxI-LL-1Fy"/>
+                            <constraint firstItem="yOY-Ce-wGF" firstAttribute="top" secondItem="qaR-nP-dw0" secondAttribute="top" constant="150" id="Pxp-tq-IaJ"/>
+                            <constraint firstItem="qaR-nP-dw0" firstAttribute="bottom" secondItem="HCU-vw-y4S" secondAttribute="bottom" constant="20" id="RQX-17-5hE"/>
+                            <constraint firstItem="OfK-yP-3WR" firstAttribute="top" secondItem="42i-59-XoK" secondAttribute="bottom" constant="60" id="XWb-G1-bWg"/>
+                            <constraint firstItem="42i-59-XoK" firstAttribute="top" secondItem="pfP-Ea-CQj" secondAttribute="bottom" constant="40" id="Ydh-CM-Sij"/>
+                            <constraint firstItem="pfP-Ea-CQj" firstAttribute="leading" secondItem="qaR-nP-dw0" secondAttribute="leading" constant="50" id="eNr-CP-beo"/>
+                            <constraint firstItem="pfP-Ea-CQj" firstAttribute="top" secondItem="yOY-Ce-wGF" secondAttribute="bottom" constant="100" id="iQ3-7j-qdw"/>
+                            <constraint firstItem="yOY-Ce-wGF" firstAttribute="centerX" secondItem="Rh2-0a-zph" secondAttribute="centerX" id="kBa-6b-xdS"/>
+                            <constraint firstItem="qaR-nP-dw0" firstAttribute="trailing" secondItem="HCU-vw-y4S" secondAttribute="trailing" constant="50" id="mwP-UY-LVW"/>
+                            <constraint firstItem="HCU-vw-y4S" firstAttribute="leading" secondItem="qaR-nP-dw0" secondAttribute="leading" constant="50" id="qpA-UH-1Tz"/>
+                            <constraint firstAttribute="trailing" secondItem="pfP-Ea-CQj" secondAttribute="trailing" constant="50" id="u42-NA-S8g"/>
+                            <constraint firstItem="qaR-nP-dw0" firstAttribute="trailing" secondItem="42i-59-XoK" secondAttribute="trailing" constant="50" id="wTy-tF-ENX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="icon" destination="yOY-Ce-wGF" id="ggJ-f1-wBX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uvi-wC-fap" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-247.85156249999997" y="94.875549048316245"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon" width="1688" height="550"/>
+        <namedColor name="customBlue">
+            <color red="0.070588235294117646" green="0.20000000000000001" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

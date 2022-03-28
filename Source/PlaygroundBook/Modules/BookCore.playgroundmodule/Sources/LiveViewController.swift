@@ -9,9 +9,19 @@
 import UIKit
 import PlaygroundSupport
 
-@objc(BookCore_LiveViewController)
-public class LiveViewController: UIViewController, PlaygroundLiveViewMessageHandler, PlaygroundLiveViewSafeAreaContainer {
-    /*
+@objc(BookCore_IntroViewController)
+
+public class IntroViewController: UIViewController, PlaygroundLiveViewMessageHandler, PlaygroundLiveViewSafeAreaContainer {
+	
+	@IBOutlet weak var icon: UIImageView!
+	
+	override public func viewDidLoad() {
+		
+		icon.layer.cornerRadius = 15
+		
+		icon.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+	}
+	/*
     public func liveViewMessageConnectionOpened() {
         // Implement this method to be notified when the live view message connection is opened.
         // The connection will be opened when the process running Contents.swift starts running and listening for messages.
