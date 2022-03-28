@@ -13,13 +13,11 @@ import PlaygroundSupport
 
 public class IntroViewController: UIViewController, PlaygroundLiveViewMessageHandler, PlaygroundLiveViewSafeAreaContainer {
 	
-	@IBOutlet weak var icon: UIImageView!
+	//	@IBOutlet weak var secondParagraph: UILabel!
+//	@IBOutlet weak var thirdParagraph: UILabel!
 	
 	override public func viewDidLoad() {
 		
-		icon.layer.cornerRadius = 15
-		
-		icon.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
 	}
 	/*
     public func liveViewMessageConnectionOpened() {

@@ -12,15 +12,11 @@ import PlaygroundSupport
 ///
 /// By default, this loads an instance of `LiveViewController` from `LiveView.storyboard`.
 public func instantiateIntroView() -> PlaygroundLiveViewable {
-    let storyboard = UIStoryboard(name: "Intro", bundle: nil)
-
-    guard let viewController = storyboard.instantiateInitialViewController() else {
-        fatalError("LiveView.storyboard does not have an initial scene; please set one or update this function")
-    }
-
-    guard let liveViewController = viewController as? IntroViewController else {
-        fatalError("LiveView.storyboard's initial scene is not a LiveViewController; please either update the storyboard or this function")
-    }
-
-    return liveViewController
+	let storyboard = UIStoryboard(name: "Intro", bundle: nil)
+	
+	if let viewController = storyboard.instantiateViewController(withIdentifier: "IntroViewController") as? IntroViewController {
+		return viewController
+	}
+	
+	fatalError("Failed to instantiateIntroView")
 }
