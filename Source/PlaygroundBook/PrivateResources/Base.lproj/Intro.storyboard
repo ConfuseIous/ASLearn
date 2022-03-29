@@ -40,7 +40,7 @@
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content=" people are projected to have some degree of hearing loss and at least ">
+                                    <fragment content=" people will suffer from hearing loss and at least ">
                                         <attributes>
                                             <font key="NSFont" metaFont="system" size="40"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -64,7 +64,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCU-vw-y4S">
                                 <rect key="frame" x="50" y="1285" width="924" height="41"/>
-                                <string key="text">Reference: Deafness and hearing loss. (2021). In Wikipedia. Retrieved April 07, 2022, from https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss</string>
+                                <string key="text">Reference: Deafness and hearing loss. (2021). World Health Organisation. Retrieved April 07, 2022, from https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
@@ -101,6 +101,12 @@
                             <constraint firstItem="qaR-nP-dw0" firstAttribute="trailing" secondItem="42i-59-XoK" secondAttribute="trailing" constant="50" id="wTy-tF-ENX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="firstParagraph" destination="pfP-Ea-CQj" id="DFr-Vy-s5F"/>
+                        <outlet property="icon" destination="yOY-Ce-wGF" id="odA-mo-9cw"/>
+                        <outlet property="secondParagraph" destination="42i-59-XoK" id="GOO-MG-60S"/>
+                        <outlet property="thirdParagraph" destination="OfK-yP-3WR" id="bKc-hp-lqd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uvi-wC-fap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

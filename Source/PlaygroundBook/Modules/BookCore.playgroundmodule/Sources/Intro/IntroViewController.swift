@@ -6,27 +6,30 @@
 //
 
 import UIKit
+import PlaygroundSupport
 
 @objc(BookCore_IntroViewController)
-class IntroViewController: UIViewController {
-
-	@IBOutlet weak var para1: UILabel!
+class IntroViewController: UIViewController, PlaygroundLiveViewMessageHandler, PlaygroundLiveViewSafeAreaContainer {
 	
-	override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	@IBOutlet weak var icon: UIImageView!
+	
+	@IBOutlet weak var firstParagraph: UILabel!
+	@IBOutlet weak var secondParagraph: UILabel!
+	@IBOutlet weak var thirdParagraph: UILabel!
+	
+	override public func viewDidLoad() {
+		super.viewDidLoad()
+		
+		animateView(view: firstParagraph, duration: 0.3)
+		animateView(view: secondParagraph, duration: 1.6)
+		animateView(view: thirdParagraph, duration: 2.9)
+	}
+	
+	
+	public func receive(_ message: PlaygroundValue) {
+		// Implement this method to receive messages sent from the process running Contents.swift.
+		// This method is *required* by the PlaygroundLiveViewMessageHandler protocol.
+		// Use this method to decode any messages sent as PlaygroundValue values and respond accordingly.
+	}
 }
+
