@@ -6,4 +6,11 @@
 //  The Swift file containing the source code edited by the user of this playground book.
 //
 //#-end-hidden-code
-let str = "Hello, playground"
+
+/*:
+ # **Welcome to ASLearn!**
+ 
+ # ASLearn will teach you the basics of American Sign Language, or ASL, with the help of Machine Learning.
+ 
+ # Please note that this playground needs to be run on an iPad with camera access.
+ */

@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "icon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -14,7 +15,7 @@
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
