@@ -1,0 +1,1257 @@
+{
+  "layer_shapes" : {
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_2\/add" : {
+      "k" : 24,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_5\/expand\/Relu6__relu6_relu__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_16\/expand\/Relu6__relu6_neg__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/Conv\/Relu6__relu6_neg__" : {
+      "k" : 32,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_2\/expand\/Relu6__relu6_neg__" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/Conv\/Relu6__relu6_threshold6__" : {
+      "k" : 32,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_16\/expand\/Relu6" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_4\/expand\/Relu6__relu6_relu__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_3\/depthwise\/Relu6" : {
+      "k" : 144,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_15\/expand\/Relu6" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_14\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_8\/expand\/Relu6" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_16\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_4\/add" : {
+      "k" : 32,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_14\/expand\/Relu6" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_3\/expand\/Relu6__relu6_relu__" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_8\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/Conv_1\/Relu6" : {
+      "k" : 1280,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_7\/expand\/Relu6" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_1\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 96,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_12\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "conv_0" : {
+      "k" : 1001,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv\/depthwise\/Relu6" : {
+      "k" : 32,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_6\/expand\/Relu6" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_2\/expand\/Relu6__relu6_relu__" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_6\/expand\/Relu6__relu6_neg__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_5\/expand\/Relu6" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_10\/expand\/Relu6__relu6_relu__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_14\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_4\/depthwise\/Relu6" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/hub_input\/Mul" : {
+      "k" : 224,
+      "w" : 3,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 224
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_9\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_9\/expand\/Relu6__relu6_relu__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_5\/expand\/Relu6__relu6_neg__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_11\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_11\/expand\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_9\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 64,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_2\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 24,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_1\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 24,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_3\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 32,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_4\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 32,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_5\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 32,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_8\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_1\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 96,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_12\/depthwise\/Relu6" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_6\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 64,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_12\/expand\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_7\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 64,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_8\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 64,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_8\/add" : {
+      "k" : 64,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_11\/add" : {
+      "k" : 96,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_7\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_11\/expand\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_5\/depthwise\/Relu6" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 16,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_15\/add" : {
+      "k" : 160,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_9\/expand\/Relu6__relu6_neg__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 32,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_13\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_6\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 192,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_3\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 144,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_11\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_7\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_16\/depthwise\/Relu6" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_10\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 96,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_11\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 96,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_12\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 96,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_13\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 160,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_14\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 160,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_15\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 160,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_16\/project\/BatchNorm\/FusedBatchNorm_nchw" : {
+      "k" : 320,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_6\/depthwise\/Relu6" : {
+      "k" : 192,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_15\/depthwise\/Relu6" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/dense\/BiasAdd" : {
+      "k" : 1,
+      "w" : 29,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_10\/expand\/Relu6" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/Logits\/Squeeze" : {
+      "k" : 1,
+      "w" : 1001,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_15\/expand\/Relu6__relu6_neg__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "Identity" : {
+      "k" : 1,
+      "w" : 29,
+      "n" : 1,
+      "_rank" : 2,
+      "h" : 1
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_15\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_7\/depthwise\/Relu6" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_1\/expand\/Relu6__relu6_neg__" : {
+      "k" : 96,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_5\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_13\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/hub_input\/Sub" : {
+      "k" : 224,
+      "w" : 3,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 224
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_10\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_9\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_14\/add" : {
+      "k" : 160,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_2\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_13\/expand\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_1\/expand\/Relu6__relu6_relu__" : {
+      "k" : 96,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_2\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_1\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 96,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_3\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_4\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_5\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_6\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_7\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_8\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_9\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_8\/depthwise\/Relu6" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_4\/expand\/Relu6" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_3\/expand\/Relu6" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/Conv_1\/Relu6__relu6_neg__" : {
+      "k" : 1280,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/Conv_1\/Relu6__relu6_threshold6__" : {
+      "k" : 1280,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "avg_pool_0" : {
+      "k" : 1280,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "transpose_160" : {
+      "k" : 1,
+      "w" : 1001,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 1
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/Conv\/Relu6__relu6_relu__" : {
+      "k" : 32,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_2\/expand\/Relu6" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_8\/expand\/Relu6__relu6_relu__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_4\/expand\/Relu6__relu6_neg__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_1\/expand\/Relu6" : {
+      "k" : 96,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_7\/expand\/Relu6__relu6_relu__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_9\/depthwise\/Relu6" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_5\/add" : {
+      "k" : 32,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_10\/expand\/Relu6__relu6_neg__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_10\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_13\/expand\/Relu6__relu6_relu__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_11\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_3\/expand\/Relu6__relu6_neg__" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_12\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_13\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_14\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_15\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_6\/expand\/Relu6__relu6_relu__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "_neg_y_sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/hub_input\/Sub" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_11\/depthwise\/Relu6" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_16\/expand\/Relu6__relu6_threshold6__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_14\/expand\/Relu6__relu6_relu__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_10\/depthwise\/Relu6" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_8\/expand\/Relu6__relu6_neg__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_16\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_9\/expand\/Relu6" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 32,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_5\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_7\/add" : {
+      "k" : 64,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_15\/expand\/Relu6__relu6_relu__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_4\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_7\/expand\/Relu6__relu6_neg__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_13\/expand\/Relu6" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_4\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_12\/expand\/Relu6" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_16\/expand\/Relu6__relu6_relu__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_11\/expand\/Relu6" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_9\/add" : {
+      "k" : 64,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_1\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 96,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_2\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_3\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 144,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_14\/expand\/Relu6__relu6_neg__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_4\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_5\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 192,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_6\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 192,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_7\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_8\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_9\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 32,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_3\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 144,
+      "w" : 28,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 28
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_14\/depthwise\/Relu6" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/Conv_1\/Relu6__relu6_relu__" : {
+      "k" : 1280,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_13\/depthwise\/Relu6" : {
+      "k" : 576,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_2\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_12\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_15\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_12\/expand\/Relu6__relu6_neg__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_1\/depthwise\/Relu6" : {
+      "k" : 96,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_10\/depthwise\/Relu6__relu6_neg__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_6\/depthwise\/Relu6__relu6_relu__" : {
+      "k" : 192,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/hub_input\/Sub\/y" : {
+      "k" : 1,
+      "w" : 1,
+      "n" : 1,
+      "_rank" : 1,
+      "h" : 1
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/Conv\/Relu6" : {
+      "k" : 32,
+      "w" : 112,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 112
+    },
+    "keras_layer_input" : {
+      "k" : 224,
+      "w" : 3,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 224
+    },
+    "transpose_161" : {
+      "k" : 3,
+      "w" : 224,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 224
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_2\/depthwise\/Relu6" : {
+      "k" : 144,
+      "w" : 56,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 56
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_12\/add" : {
+      "k" : 96,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_10\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 384,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_11\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_12\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 14,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 14
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_13\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 576,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_14\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_15\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    },
+    "sequential\/keras_layer\/StatefulPartitionedCall\/StatefulPartitionedCall\/StatefulPartitionedCall\/predict\/MobilenetV2\/expanded_conv_16\/depthwise\/Relu6__relu6_threshold6__" : {
+      "k" : 960,
+      "w" : 7,
+      "n" : 1,
+      "_rank" : 4,
+      "h" : 7
+    }
+  }
+}
