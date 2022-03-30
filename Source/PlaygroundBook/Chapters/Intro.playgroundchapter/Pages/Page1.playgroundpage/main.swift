@@ -13,4 +13,6 @@
  # ASLearn will teach you the basics of American Sign Language, or ASL, with the help of Machine Learning.
  
  # Please note that this playground needs to be run on an iPad with camera access.
+ 
+ [Next Page!](@next)
  */
