@@ -8,9 +8,6 @@
 import UIKit
 import PlaygroundSupport
 
-import CoreML
-import Vision
-
 @objc(BookCore_IntroViewController)
 class IntroViewController: UIViewController, PlaygroundLiveViewMessageHandler, PlaygroundLiveViewSafeAreaContainer {
 	
@@ -26,12 +23,6 @@ class IntroViewController: UIViewController, PlaygroundLiveViewMessageHandler, P
 		animateView(view: firstParagraph, duration: 0.3)
 		animateView(view: secondParagraph, duration: 1.6)
 		animateView(view: thirdParagraph, duration: 2.9)
-		
-//		do {
-//			let model = try VNCoreMLModel(for: ASL().model)
-//		} catch {
-//			print(error)
-//		}
 	}
 	
 	public func receive(_ message: PlaygroundValue) {
