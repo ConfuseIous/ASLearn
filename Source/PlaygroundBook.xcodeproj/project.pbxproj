@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C76328127F24190009B5A71 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76328027F24190009B5A71 /* IntroViewController.swift */; };
 		3C76328427F2E92D009B5A71 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76328327F2E92D009B5A71 /* Helpers.swift */; };
+		3CA10B7327F44A7E003833A2 /* ASL.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3CA10B7227F44A7E003833A2 /* ASL.mlmodel */; };
 		5E086DCA2051DDAE004D8D25 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E086DCC2051DDAE004D8D25 /* Intro.storyboard */; };
 		5E086DD32051E3A3004D8D25 /* Manifest.plist in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5E086DCF2051DF0F004D8D25 /* Manifest.plist */; };
 		5E3196F32061DEA40077BBD7 /* LiveViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */; };
@@ -136,6 +137,7 @@
 /* Begin PBXFileReference section */
 		3C76328027F24190009B5A71 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		3C76328327F2E92D009B5A71 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		3CA10B7227F44A7E003833A2 /* ASL.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ASL.mlmodel; sourceTree = "<group>"; };
 		5E086DC02051C5A7004D8D25 /* ASLearn.playgroundbook */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASLearn.playgroundbook; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E086DC72051DD03004D8D25 /* BookOverridingBuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookOverridingBuildSettings.xcconfig; sourceTree = "<group>"; };
 		5E086DCD2051DDB8004D8D25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Intro.storyboard; sourceTree = "<group>"; };
@@ -208,12 +210,20 @@
 			path = Intro;
 			sourceTree = "<group>";
 		};
-		3C76328227F2E920009B5A71 /* New Group */ = {
+		3C76328227F2E920009B5A71 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				3C76328327F2E92D009B5A71 /* Helpers.swift */,
 			);
-			path = "New Group";
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3CA10B7427F44DC2003833A2 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				3CA10B7227F44A7E003833A2 /* ASL.mlmodel */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		5E086DA4204F706E004D8D25 /* Products */ = {
@@ -327,7 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				3C76327F27F24187009B5A71 /* Intro */,
-				3C76328227F2E920009B5A71 /* New Group */,
+				3C76328227F2E920009B5A71 /* Helpers */,
+				3CA10B7427F44DC2003833A2 /* Assets */,
 				5EF2F9AD2054BBF300191409 /* LiveViewController.swift */,
 				5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */,
 			);
@@ -631,6 +642,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CA10B7327F44A7E003833A2 /* ASL.mlmodel in Sources */,
 				3C76328127F24190009B5A71 /* IntroViewController.swift in Sources */,
 				5E3196F32061DEA40077BBD7 /* LiveViewSupport.swift in Sources */,
 				5EF2F9AE2054BBF300191409 /* LiveViewController.swift in Sources */,

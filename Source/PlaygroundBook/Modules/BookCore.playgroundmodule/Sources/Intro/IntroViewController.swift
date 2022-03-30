@@ -25,7 +25,6 @@ class IntroViewController: UIViewController, PlaygroundLiveViewMessageHandler, P
 		animateView(view: thirdParagraph, duration: 2.9)
 	}
 	
-	
 	public func receive(_ message: PlaygroundValue) {
 		// Implement this method to receive messages sent from the process running Contents.swift.
 		// This method is *required* by the PlaygroundLiveViewMessageHandler protocol.
