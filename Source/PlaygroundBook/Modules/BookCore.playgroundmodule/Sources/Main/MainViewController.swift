@@ -16,17 +16,27 @@ class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, Pl
 	
 	@IBOutlet weak var sceneView: ARSCNView!
 	
+	var captureSession = AVCaptureSession()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		setupCaptureSession()
 		
 		do {
 			let model = try ASL(configuration: .init()).model
 		} catch {
 			print(error)
 		}
-		
-		let configuration = ARWorldTrackingConfiguration()
-		sceneView.session.run(configuration)
+	}
+	
+	func setupCaptureSession() {
+		DispatchQueue.global(qos: .userInitiated).async {
+			self.captureSession = AVCaptureSession()
+			self.captureSession.beginConfiguration()
+			self.captureSession.commitConfiguration()
+			self.captureSession.startRunning()
+		}
 	}
 	
 	public func receive(_ message: PlaygroundValue) {
