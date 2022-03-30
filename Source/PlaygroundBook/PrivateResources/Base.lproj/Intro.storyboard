@@ -24,7 +24,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="jAg-9N-jaS">
-                                <rect key="frame" x="50" y="212" width="644" height="408.5"/>
+                                <rect key="frame" x="50" y="212" width="644" height="307.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfP-Ea-CQj">
                                         <rect key="frame" x="0.0" y="0.0" width="644" height="93.5"/>
@@ -76,13 +76,6 @@
                                         <color key="textColor" name="customBlue"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCU-vw-y4S">
-                                        <rect key="frame" x="0.0" y="347.5" width="644" height="61"/>
-                                        <string key="text">Reference: Deafness and hearing loss. (2021). World Health Organisation. Retrieved April 07, 2022, from https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -114,9 +107,6 @@
         <namedColor name="customBlue">
             <color red="0.070588235294117646" green="0.20000000000000001" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
