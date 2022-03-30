@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fcD-sv-Xiz">
-    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="ipad7_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -14,91 +14,80 @@
             <objects>
                 <viewController storyboardIdentifier="IntroViewController" id="fcD-sv-Xiz" customClass="BookCore_IntroViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rh2-0a-zph">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="744" height="1133"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="yOY-Ce-wGF">
-                                <rect key="frame" x="312" y="174" width="400" height="138.5"/>
+                                <rect key="frame" x="172" y="24" width="400" height="138"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="yOY-Ce-wGF" secondAttribute="height" multiplier="557:193" id="Exe-xV-nIG"/>
-                                    <constraint firstAttribute="width" constant="400" id="l2f-NV-qlw"/>
+                                    <constraint firstAttribute="width" secondItem="yOY-Ce-wGF" secondAttribute="height" multiplier="200:69" id="GyU-kS-JeI"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfP-Ea-CQj">
-                                <rect key="frame" x="50" y="412.5" width="924" height="143.5"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="By 2050, nearly ">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="40"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="2.5 billion">
-                                        <attributes>
-                                            <color key="NSColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" metaFont="system" size="40"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" people will suffer from hearing loss and at least ">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="40"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="700 million">
-                                        <attributes>
-                                            <color key="NSColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" metaFont="system" size="40"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" will require hearing rehabilitation.">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="40"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCU-vw-y4S">
-                                <rect key="frame" x="50" y="1285" width="924" height="41"/>
-                                <string key="text">Reference: Deafness and hearing loss. (2021). World Health Organisation. Retrieved April 07, 2022, from https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="secondaryLabelColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As such, Sign Language is a skill of rapidly increasing importance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42i-59-XoK">
-                                <rect key="frame" x="50" y="596" width="924" height="95.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASLearn aims to teach American Sign Language in a fun and interactive way." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfK-yP-3WR">
-                                <rect key="frame" x="50" y="751.5" width="924" height="95.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                <color key="textColor" name="customBlue"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="jAg-9N-jaS">
+                                <rect key="frame" x="50" y="212" width="644" height="307.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfP-Ea-CQj">
+                                        <rect key="frame" x="0.0" y="0.0" width="644" height="93.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="By 2050, nearly ">
+                                                <attributes>
+                                                    <font key="NSFont" size="28" name=".SFNS-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="2.5 billion">
+                                                <attributes>
+                                                    <color key="NSColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" size="28" name=".SFNS-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" people will suffer from hearing loss and at least ">
+                                                <attributes>
+                                                    <font key="NSFont" size="28" name=".SFNS-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="700 million">
+                                                <attributes>
+                                                    <color key="NSColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" size="28" name=".SFNS-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content=" will require hearing rehabilitation.">
+                                                <attributes>
+                                                    <font key="NSFont" size="28" name=".SFNS-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As such, Sign Language is a skill of rapidly increasing importance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42i-59-XoK">
+                                        <rect key="frame" x="0.0" y="133.5" width="644" height="67"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASLearn aims to teach American Sign Language in a fun and interactive way." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfK-yP-3WR">
+                                        <rect key="frame" x="0.0" y="240.5" width="644" height="67"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <color key="textColor" name="customBlue"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qaR-nP-dw0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OfK-yP-3WR" firstAttribute="leading" secondItem="qaR-nP-dw0" secondAttribute="leading" constant="50" id="8up-gr-wGu"/>
-                            <constraint firstItem="42i-59-XoK" firstAttribute="leading" secondItem="qaR-nP-dw0" secondAttribute="leading" constant="50" id="Evu-4Z-dXp"/>
-                            <constraint firstAttribute="trailing" secondItem="OfK-yP-3WR" secondAttribute="trailing" constant="50" id="IxI-LL-1Fy"/>
-                            <constraint firstItem="yOY-Ce-wGF" firstAttribute="top" secondItem="qaR-nP-dw0" secondAttribute="top" constant="150" id="Pxp-tq-IaJ"/>
-                            <constraint firstItem="qaR-nP-dw0" firstAttribute="bottom" secondItem="HCU-vw-y4S" secondAttribute="bottom" constant="20" id="RQX-17-5hE"/>
-                            <constraint firstItem="OfK-yP-3WR" firstAttribute="top" secondItem="42i-59-XoK" secondAttribute="bottom" constant="60" id="XWb-G1-bWg"/>
-                            <constraint firstItem="42i-59-XoK" firstAttribute="top" secondItem="pfP-Ea-CQj" secondAttribute="bottom" constant="40" id="Ydh-CM-Sij"/>
-                            <constraint firstItem="pfP-Ea-CQj" firstAttribute="leading" secondItem="qaR-nP-dw0" secondAttribute="leading" constant="50" id="eNr-CP-beo"/>
-                            <constraint firstItem="pfP-Ea-CQj" firstAttribute="top" secondItem="yOY-Ce-wGF" secondAttribute="bottom" constant="100" id="iQ3-7j-qdw"/>
-                            <constraint firstItem="yOY-Ce-wGF" firstAttribute="centerX" secondItem="Rh2-0a-zph" secondAttribute="centerX" id="kBa-6b-xdS"/>
-                            <constraint firstItem="qaR-nP-dw0" firstAttribute="trailing" secondItem="HCU-vw-y4S" secondAttribute="trailing" constant="50" id="mwP-UY-LVW"/>
-                            <constraint firstItem="HCU-vw-y4S" firstAttribute="leading" secondItem="qaR-nP-dw0" secondAttribute="leading" constant="50" id="qpA-UH-1Tz"/>
-                            <constraint firstAttribute="trailing" secondItem="pfP-Ea-CQj" secondAttribute="trailing" constant="50" id="u42-NA-S8g"/>
-                            <constraint firstItem="qaR-nP-dw0" firstAttribute="trailing" secondItem="42i-59-XoK" secondAttribute="trailing" constant="50" id="wTy-tF-ENX"/>
+                            <constraint firstItem="jAg-9N-jaS" firstAttribute="leading" secondItem="qaR-nP-dw0" secondAttribute="leading" constant="50" id="2Fp-DA-1Ky"/>
+                            <constraint firstItem="qaR-nP-dw0" firstAttribute="trailing" secondItem="yOY-Ce-wGF" secondAttribute="trailing" constant="172" id="Ihi-5g-dEh"/>
+                            <constraint firstItem="jAg-9N-jaS" firstAttribute="top" secondItem="yOY-Ce-wGF" secondAttribute="bottom" constant="50" id="apQ-iF-c1M"/>
+                            <constraint firstItem="yOY-Ce-wGF" firstAttribute="leading" secondItem="qaR-nP-dw0" secondAttribute="leading" constant="172" id="ppx-B1-RYQ"/>
+                            <constraint firstItem="yOY-Ce-wGF" firstAttribute="top" secondItem="qaR-nP-dw0" secondAttribute="top" id="uC6-pe-Y31"/>
+                            <constraint firstAttribute="trailing" secondItem="jAg-9N-jaS" secondAttribute="trailing" constant="50" id="zkK-hJ-jQv"/>
                         </constraints>
                     </view>
                     <connections>
@@ -118,9 +107,6 @@
         <namedColor name="customBlue">
             <color red="0.070588235294117646" green="0.20000000000000001" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

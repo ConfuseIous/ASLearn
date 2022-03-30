@@ -19,3 +19,13 @@ public func instantiateIntroView() -> PlaygroundLiveViewable {
 	
 	return viewController
 }
+
+public func instantiateMainView() -> PlaygroundLiveViewable {
+	let storyboard = UIStoryboard(name: "Main", bundle: nil)
+	
+	guard let viewController = storyboard.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController else {
+		fatalError("Failed to instantiateMainView")
+	}
+	
+	return viewController
+}
