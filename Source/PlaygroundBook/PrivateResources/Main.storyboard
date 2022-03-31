@@ -18,26 +18,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRa-F4-qiC">
-                                <rect key="frame" x="72" y="44" width="600" height="600"/>
+                                <rect key="frame" x="172" y="24" width="400" height="300"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="600" id="2ad-df-6pg"/>
-                                    <constraint firstAttribute="width" secondItem="WRa-F4-qiC" secondAttribute="height" multiplier="1:1" id="QvQ-cq-HKd"/>
-                                    <constraint firstAttribute="width" constant="600" id="boI-Ob-63p"/>
+                                    <constraint firstAttribute="width" constant="400" id="YTT-cZ-4Yi"/>
+                                    <constraint firstAttribute="height" constant="300" id="iKU-Xj-9jI"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQz-Q9-bdW">
-                                <rect key="frame" x="72" y="664" width="174" height="22"/>
+                                <rect key="frame" x="172" y="344" width="170.5" height="31"/>
                                 <color key="backgroundColor" name="customBlue"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="  Video Orientation" image="ipad.homebutton.landscape" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="plain" image="ipad.homebutton.landscape" catalog="system" title="  Video Orientation"/>
                                 <connections>
                                     <action selector="orientationButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="DJK-6e-eyi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7f-oC-SuA">
-                                <rect key="frame" x="498" y="664" width="174" height="22"/>
+                                <rect key="frame" x="401.5" y="344" width="170.5" height="31"/>
                                 <color key="backgroundColor" name="customBlue"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -47,14 +47,14 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="X7f-oC-SuA" firstAttribute="top" secondItem="WRa-F4-qiC" secondAttribute="bottom" constant="20" id="3Pq-bC-SRN"/>
-                            <constraint firstItem="X7f-oC-SuA" firstAttribute="width" secondItem="aQz-Q9-bdW" secondAttribute="width" id="ISA-8h-w6g"/>
-                            <constraint firstItem="WRa-F4-qiC" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="Kij-nf-ZQV"/>
-                            <constraint firstItem="X7f-oC-SuA" firstAttribute="trailing" secondItem="WRa-F4-qiC" secondAttribute="trailing" id="Sme-UQ-AZn"/>
-                            <constraint firstItem="X7f-oC-SuA" firstAttribute="height" secondItem="aQz-Q9-bdW" secondAttribute="height" id="a3J-Kl-O7B"/>
-                            <constraint firstItem="aQz-Q9-bdW" firstAttribute="top" secondItem="WRa-F4-qiC" secondAttribute="bottom" constant="20" id="dhq-Xl-jpv"/>
-                            <constraint firstItem="WRa-F4-qiC" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="egk-6k-oOt"/>
-                            <constraint firstItem="aQz-Q9-bdW" firstAttribute="leading" secondItem="WRa-F4-qiC" secondAttribute="leading" id="nyB-3m-Av8"/>
+                            <constraint firstItem="WRa-F4-qiC" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="8rw-Gf-uEj"/>
+                            <constraint firstItem="aQz-Q9-bdW" firstAttribute="leading" secondItem="WRa-F4-qiC" secondAttribute="leading" id="HTi-y3-GVV"/>
+                            <constraint firstItem="WRa-F4-qiC" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="I0b-r6-a2l"/>
+                            <constraint firstItem="X7f-oC-SuA" firstAttribute="width" secondItem="aQz-Q9-bdW" secondAttribute="width" id="OVc-Ai-jS2"/>
+                            <constraint firstItem="X7f-oC-SuA" firstAttribute="trailing" secondItem="WRa-F4-qiC" secondAttribute="trailing" id="Tgp-EK-x9D"/>
+                            <constraint firstItem="X7f-oC-SuA" firstAttribute="top" secondItem="WRa-F4-qiC" secondAttribute="bottom" constant="20" id="Y4w-k0-O2k"/>
+                            <constraint firstItem="aQz-Q9-bdW" firstAttribute="top" secondItem="WRa-F4-qiC" secondAttribute="bottom" constant="20" id="kg4-Uu-OhI"/>
+                            <constraint firstItem="X7f-oC-SuA" firstAttribute="height" secondItem="aQz-Q9-bdW" secondAttribute="height" id="vfe-en-NVz"/>
                         </constraints>
                     </view>
                     <connections>

@@ -28,9 +28,6 @@ class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, Pl
 		
 		orientationButton.layer.cornerRadius = 10
 		analyseButton.layer.cornerRadius = 10
-		
-		orientationButton.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-		analyseButton.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -92,13 +89,11 @@ class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, Pl
 				self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
 				
 				self.previewLayer.frame = self.cameraView.bounds
+				
 				self.cameraView.layer.addSublayer(previewLayer)
 				
 				self.captureSession.addInput(frontCameraInput as AVCaptureInput)
-//				self.captureSession.connections.first?.videoOrientation = .landscapeLeft
 				self.captureSession.connections.first?.videoOrientation = .landscapeRight
-//				self.captureSession.connections.first?.automaticallyAdjustsVideoMirroring = false
-//				self.captureSession.connections.first?.isVideoMirrored = true
 				self.captureSession.commitConfiguration()
 				self.captureSession.startRunning()
 			}
