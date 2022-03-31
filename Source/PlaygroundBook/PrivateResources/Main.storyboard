@@ -19,7 +19,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRa-F4-qiC">
                                 <rect key="frame" x="172" y="24" width="400" height="300"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="YTT-cZ-4Yi"/>
                                     <constraint firstAttribute="height" constant="300" id="iKU-Xj-9jI"/>
@@ -42,6 +42,9 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="  Analyse" image="camera.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="analyseButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3Yb-5Q-OcI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>

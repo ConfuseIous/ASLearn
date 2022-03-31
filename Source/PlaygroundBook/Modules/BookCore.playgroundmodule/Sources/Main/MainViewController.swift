@@ -12,11 +12,13 @@ import Vision
 import PlaygroundSupport
 
 @objc(BookCore_MainViewController)
-class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, PlaygroundLiveViewSafeAreaContainer {
+class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, PlaygroundLiveViewSafeAreaContainer, AVCapturePhotoCaptureDelegate {
 	
 	@IBOutlet weak var cameraView: UIView!
 	@IBOutlet weak var orientationButton: UIButton!
 	@IBOutlet weak var analyseButton: UIButton!
+	
+	let cameraOutput = AVCapturePhotoOutput()
 	
 	var frontCamera : AVCaptureDevice?
 	var frontCameraInput : AVCaptureInput!
@@ -35,11 +37,11 @@ class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, Pl
 		setupCamera()
 		startCaptureSession()
 		
-//		do {
-//			let model = try ASL(configuration: .init()).model
-//		} catch {
-//			print(error)
-//		}
+		//		do {
+		//			let model = try ASL(configuration: .init()).model
+		//		} catch {
+		//			print(error)
+		//		}
 	}
 	
 	func setupCamera() {
@@ -100,6 +102,29 @@ class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, Pl
 		}
 	}
 	
+	func capturePhoto() {
+		let settings = AVCapturePhotoSettings()
+		let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+		let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
+							 kCVPixelBufferWidthKey as String: 160,
+							 kCVPixelBufferHeightKey as String: 160]
+		settings.previewPhotoFormat = previewFormat
+		self.cameraOutput.capturePhoto(with: settings, delegate: self)
+	}
+	
+	func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+		if let error = error {
+			print(error.localizedDescription)
+		}
+		
+		func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+			let imageData = photo.fileDataRepresentation()
+			if let data = imageData, let img = UIImage(data: data) {
+				print(img)
+			}
+		}
+	}
+	
 	func showCameraError() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		let vc = storyboard.instantiateViewController(withIdentifier: "noCameraVC")
@@ -107,8 +132,13 @@ class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, Pl
 		self.present(vc, animated: true)
 	}
 	
+	
 	@IBAction func orientationButtonPressed(_ sender: Any) {
 		captureSession.connections.first?.videoOrientation =  captureSession.connections.first?.videoOrientation == .landscapeLeft ? .landscapeRight : .landscapeLeft
+	}
+	
+	@IBAction func analyseButtonPressed(_ sender: Any) {
+		capturePhoto()
 	}
 	
 	public func receive(_ message: PlaygroundValue) {
