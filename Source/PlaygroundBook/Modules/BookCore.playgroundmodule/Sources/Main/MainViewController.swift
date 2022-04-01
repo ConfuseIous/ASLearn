@@ -8,7 +8,6 @@
 import UIKit
 import ARKit
 import CoreML
-import Vision
 import PlaygroundSupport
 
 @objc(BookCore_MainViewController)
@@ -22,7 +21,7 @@ class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, Pl
 	var captureSession = AVCaptureSession()
 	var previewLayer : AVCaptureVideoPreviewLayer!
 	
-	var model: VNCoreMLModel = try! VNCoreMLModel(for: ASL(configuration: .init()).model)
+	var model: MLModel = try! ASL(configuration: .init()).model
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -82,31 +81,6 @@ class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, Pl
 		//		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
 		//		self.present(alert, animated: true, completion: nil)
 		
-		let request = VNCoreMLRequest(model: model, completionHandler: handleClassification)
-		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
-		do {
-			try handler.perform([request])
-		} catch {
-			print(error)
-		}
-	}
-	
-	// MARK: - ML Classification
-	lazy var classificationRequest: VNCoreMLRequest? = {
-		let request = VNCoreMLRequest(model: model, completionHandler: handleClassification)
-		request.imageCropAndScaleOption = .scaleFit
-		return request
-	}()
-	
-	func handleClassification(request: VNRequest, error: Error?) {
-		guard let observations = request.results as? [VNClassificationObservation] else { return }
-		guard let best = observations.first else { return}
-		
-		DispatchQueue.main.async {
-			let alert = UIAlertController(title: "DEBUG: ML Result", message: "\(best)", preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-			self.present(alert, animated: true, completion: nil)
-		}
 	}
 	
 	func showCameraError() {

@@ -570,7 +570,6 @@
 			);
 			mainGroup = 5E2A7ADC204F611300F4E17A;
 			packageReferences = (
-				3CA10B7127F43BC0003833A2 /* XCRemoteSwiftPackageReference "NumPy-iOS" */,
 			);
 			productRefGroup = 5E086DA4204F706E004D8D25 /* Products */;
 			projectDirPath = "";
@@ -1056,17 +1055,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		3CA10B7127F43BC0003833A2 /* XCRemoteSwiftPackageReference "NumPy-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kewlbear/NumPy-iOS.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 5E2A7ADD204F611300F4E17A /* Project object */;
 }
