@@ -24,40 +24,40 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="jAg-9N-jaS">
-                                <rect key="frame" x="50" y="212" width="644" height="307.5"/>
+                                <rect key="frame" x="50" y="212" width="644" height="314.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfP-Ea-CQj">
-                                        <rect key="frame" x="0.0" y="0.0" width="644" height="93.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="644" height="100.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="By 2050, nearly ">
                                                 <attributes>
-                                                    <font key="NSFont" size="28" name=".SFNS-Regular"/>
+                                                    <font key="NSFont" metaFont="system" size="28"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content="2.5 billion">
                                                 <attributes>
                                                     <color key="NSColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="28" name=".SFNS-Regular"/>
+                                                    <font key="NSFont" metaFont="system" size="28"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content=" people will suffer from hearing loss and at least ">
                                                 <attributes>
-                                                    <font key="NSFont" size="28" name=".SFNS-Regular"/>
+                                                    <font key="NSFont" metaFont="system" size="28"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content="700 million">
                                                 <attributes>
                                                     <color key="NSColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="28" name=".SFNS-Regular"/>
+                                                    <font key="NSFont" metaFont="system" size="28"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content=" will require hearing rehabilitation.">
                                                 <attributes>
-                                                    <font key="NSFont" size="28" name=".SFNS-Regular"/>
+                                                    <font key="NSFont" metaFont="system" size="28"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -65,13 +65,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As such, Sign Language is a skill of rapidly increasing importance." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42i-59-XoK">
-                                        <rect key="frame" x="0.0" y="133.5" width="644" height="67"/>
+                                        <rect key="frame" x="0.0" y="140.5" width="644" height="67"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASLearn aims to teach American Sign Language in a fun and interactive way." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfK-yP-3WR">
-                                        <rect key="frame" x="0.0" y="240.5" width="644" height="67"/>
+                                        <rect key="frame" x="0.0" y="247.5" width="644" height="67"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                         <color key="textColor" name="customBlue"/>
                                         <nil key="highlightedColor"/>

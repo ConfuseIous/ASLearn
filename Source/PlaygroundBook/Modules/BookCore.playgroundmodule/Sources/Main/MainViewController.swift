@@ -21,7 +21,7 @@ class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, Pl
 	var captureSession = AVCaptureSession()
 	var previewLayer : AVCaptureVideoPreviewLayer!
 	
-	var model: MLModel = try! ASL(configuration: .init()).model
+//	var model: MLModel = try! ASL(configuration: .init()).modele
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -76,6 +76,8 @@ class MainViewController: UIViewController, PlaygroundLiveViewMessageHandler, Pl
 		let dataProvider = CGDataProvider(data: dataImage as CFData)
 		let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
 		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UIImage.Orientation.right)
+		
+		
 		
 		//		let alert = UIAlertController(title: "DEBUG: IMAGE SIZE", message: "\(image.size)", preferredStyle: .alert)
 		//		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))

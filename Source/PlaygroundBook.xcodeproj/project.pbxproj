@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C14709F27F45EA400A1F2B5 /* ASL.mlmodelc in Resources */ = {isa = PBXBuildFile; fileRef = 3C14709E27F45EA400A1F2B5 /* ASL.mlmodelc */; };
 		3C1470A227F45EFD00A1F2B5 /* ASL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470A127F45EF000A1F2B5 /* ASL.swift */; };
 		3C1470A427F46CD200A1F2B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C1470A327F46CD200A1F2B5 /* Main.storyboard */; };
 		3C1470A727F46D1B00A1F2B5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1470A627F46D1B00A1F2B5 /* MainViewController.swift */; };
 		3C76328127F24190009B5A71 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76328027F24190009B5A71 /* IntroViewController.swift */; };
 		3C76328427F2E92D009B5A71 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76328327F2E92D009B5A71 /* Helpers.swift */; };
+		3C7B736C27F884EA00FB7CEE /* ASL.mlmodelc in Resources */ = {isa = PBXBuildFile; fileRef = 3C7B736B27F884EA00FB7CEE /* ASL.mlmodelc */; };
 		5E086DCA2051DDAE004D8D25 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E086DCC2051DDAE004D8D25 /* Intro.storyboard */; };
 		5E086DD32051E3A3004D8D25 /* Manifest.plist in Copy Book Contents */ = {isa = PBXBuildFile; fileRef = 5E086DCF2051DF0F004D8D25 /* Manifest.plist */; };
 		5E3196F32061DEA40077BBD7 /* LiveViewSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3196F22061DEA40077BBD7 /* LiveViewSupport.swift */; };
@@ -138,13 +138,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3C14709E27F45EA400A1F2B5 /* ASL.mlmodelc */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ASL.mlmodelc; sourceTree = "<group>"; };
-		3C1470A027F45EF000A1F2B5 /* PlaygroundBook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlaygroundBook-Bridging-Header.h"; sourceTree = "<group>"; };
 		3C1470A127F45EF000A1F2B5 /* ASL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASL.swift; sourceTree = "<group>"; };
 		3C1470A327F46CD200A1F2B5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3C1470A627F46D1B00A1F2B5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3C76328027F24190009B5A71 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		3C76328327F2E92D009B5A71 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		3C7B736B27F884EA00FB7CEE /* ASL.mlmodelc */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ASL.mlmodelc; sourceTree = "<group>"; };
 		5E086DC02051C5A7004D8D25 /* ASLearn.playgroundbook */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ASLearn.playgroundbook; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E086DC72051DD03004D8D25 /* BookOverridingBuildSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = BookOverridingBuildSettings.xcconfig; sourceTree = "<group>"; };
 		5E086DCD2051DDB8004D8D25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Intro.storyboard; sourceTree = "<group>"; };
@@ -417,12 +416,11 @@
 		5EF2F9792054B64800191409 /* PrivateResources */ = {
 			isa = PBXGroup;
 			children = (
-				3C14709E27F45EA400A1F2B5 /* ASL.mlmodelc */,
+				3C7B736B27F884EA00FB7CEE /* ASL.mlmodelc */,
 				5EF2F97E2054B6E400191409 /* ManifestPlist.strings */,
 				5E086DCC2051DDAE004D8D25 /* Intro.storyboard */,
 				3C1470A327F46CD200A1F2B5 /* Main.storyboard */,
 				5E551EC42371FC3F00784365 /* Assets.xcassets */,
-				3C1470A027F45EF000A1F2B5 /* PlaygroundBook-Bridging-Header.h */,
 			);
 			path = PrivateResources;
 			sourceTree = "<group>";
@@ -593,7 +591,7 @@
 				3C1470A427F46CD200A1F2B5 /* Main.storyboard in Resources */,
 				5E551EC52371FC3F00784365 /* Assets.xcassets in Resources */,
 				5E086DCA2051DDAE004D8D25 /* Intro.storyboard in Resources */,
-				3C14709F27F45EA400A1F2B5 /* ASL.mlmodelc in Resources */,
+				3C7B736C27F884EA00FB7CEE /* ASL.mlmodelc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

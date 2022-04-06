@@ -19,14 +19,14 @@ class ASLInput : MLFeatureProvider {
 			return ["keras_layer_input"]
 		}
 	}
-	
+
 	func featureValue(for featureName: String) -> MLFeatureValue? {
 		if (featureName == "keras_layer_input") {
 			return MLFeatureValue(multiArray: keras_layer_input)
 		}
 		return nil
 	}
-	
+
 	init(keras_layer_input: MLMultiArray) {
 		self.keras_layer_input = keras_layer_input
 	}
@@ -60,7 +60,7 @@ class ASLOutput : MLFeatureProvider {
 	var featureNames: Set<String> {
 		return self.provider.featureNames
 	}
-	
+
 	func featureValue(for featureName: String) -> MLFeatureValue? {
 		return self.provider.featureValue(for: featureName)
 	}
