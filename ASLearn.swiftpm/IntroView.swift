@@ -39,6 +39,15 @@ struct IntroView: View {
 				.padding()
 				.fixedSize(horizontal: false, vertical: true)
 			Spacer()
+			Text("Please note that this playground needs to be run on an iPad with camera access.")
+				.font(.system(size: 15))
+				.multilineTextAlignment(.center)
+				.padding()
+			Text("Reference: Deafness and hearing loss. (2021). World Health Organisation. Retrieved April 07, 2022, from https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss")
+				.font(.system(size: 12))
+				.multilineTextAlignment(.center)
+				.foregroundColor(.secondary)
+				.padding()
 		}
 	}
 }
