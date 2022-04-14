@@ -45,6 +45,8 @@ struct IntroView: View {
 					.aspectRatio(contentMode: .fit)
 					.frame(width: 70)
                     .foregroundColor(.blue)
+			}).onTapGesture(perform: {
+				print("tapped")
 			})
             Spacer()
             Text("Please note that this playground needs to be run on an iPad with camera access.")
