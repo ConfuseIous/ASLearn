@@ -11,9 +11,9 @@ import CoreML
 
 class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 	
-	@IBOutlet weak var cameraView: UIView!
-	@IBOutlet weak var orientationButton: UIButton!
-	@IBOutlet weak var analyseButton: UIButton!
+	var cameraView: UIView!
+	var orientationButton: UIButton!
+	var analyseButton: UIButton! 	
 	
 	var cameraOutput: AVCapturePhotoOutput!
 	var captureSession = AVCaptureSession()
@@ -21,15 +21,30 @@ class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 	
 //	var model: MLModel = try! ASL(configuration: .init()).model
 	
+	override func loadView() {
+		cameraView = UIView()
+		cameraView.backgroundColor = .red
+		cameraView.translatesAutoresizingMaskIntoConstraints = false
+		
+		NSLayoutConstraint.activate([
+			cameraView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+			cameraView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, constant: -100)
+		])
+		
+		orientationButton = UIButton()
+		
+//		analyseButton = UIButton()
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		orientationButton.layer.cornerRadius = 10
-		analyseButton.layer.cornerRadius = 10
+//		orientationButton.layer.cornerRadius = 10
+//		analyseButton.layer.cornerRadius = 10
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
-		startCameraAndSession()
+//		startCameraAndSession()
 	}
 	
 	// MARK: - Camera
