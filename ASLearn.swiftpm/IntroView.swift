@@ -39,7 +39,7 @@ struct IntroView: View {
                 .padding()
                 .fixedSize(horizontal: false, vertical: true)
 			Spacer()
-            NavigationLink(destination: MainView(), label: {
+            NavigationLink(destination: MainViewController(), label: {
                 Image(systemName: "arrow.right.circle.fill")
 					.resizable()
 					.aspectRatio(contentMode: .fit)
