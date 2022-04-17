@@ -4,9 +4,8 @@ import SwiftUI
 struct ASLearnApp: App {
     var body: some Scene {
         WindowGroup {
-//            IntroView()
-//			MainView()
-			MainViewController()
+            IntroView()
+//			MainViewController()
         }
     }
 }

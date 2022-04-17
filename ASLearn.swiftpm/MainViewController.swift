@@ -13,24 +13,31 @@ import SwiftUI
 //final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 final class MainViewController: UIViewController {
 	
+	var panGesture = UIPanGestureRecognizer()
+	
+	let tutorialView: UIView = {
+		let tutorialView = UIView()
+		tutorialView.translatesAutoresizingMaskIntoConstraints = false
+		return tutorialView
+	}()
+	
 	let cameraView: UIView = {
 		let cameraView = UIView()
 		cameraView.translatesAutoresizingMaskIntoConstraints = false
 		return cameraView
 	}()
 	
-	let orientationButton: UIButton = {
-		let orientationButton = UIButton()
-		orientationButton.translatesAutoresizingMaskIntoConstraints = false
-		return orientationButton
-	}()
+//	let orientationButton: UIButton = {
+//		let orientationButton = UIButton()
+//		orientationButton.translatesAutoresizingMaskIntoConstraints = false
+//		return orientationButton
+//	}()
 	
 	let analyseButton: UIButton = {
 		let analyseButton = UIButton()
 		analyseButton.translatesAutoresizingMaskIntoConstraints = false
 		return analyseButton
 	}()
-	
 	
 	//	var cameraOutput: AVCapturePhotoOutput!
 	//	var captureSession = AVCaptureSession()
@@ -41,17 +48,27 @@ final class MainViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		// Set up UIPanGestureRecognizer
+		panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.draggedView(_:)))
+		cameraView.isUserInteractionEnabled = true
+		cameraView.addGestureRecognizer(panGesture)
+		
+		#warning("change colour")
+		cameraView.backgroundColor = .red
+		
+		// Set up constraints
 		view.addSubview(cameraView)
+		view.addSubview(analyseButton)
 		
 		NSLayoutConstraint.activate([
-			cameraView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-			cameraView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+			cameraView.widthAnchor.constraint(equalToConstant: 200),
+			cameraView.heightAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: 1.0)
 		])
 	}
 	
-	//	override func viewDidAppear(_ animated: Bool) {
-	//		startCameraAndSession()
-	//	}
+//		override func viewDidAppear(_ animated: Bool) {
+//			startCameraAndSession()
+//		}
 	
 	// MARK: - Camera
 	//	func startCameraAndSession() {
@@ -126,6 +143,14 @@ final class MainViewController: UIViewController {
 	//		settings.previewPhotoFormat = previewFormat
 	//		cameraOutput.capturePhoto(with: settings, delegate: self)
 	//	}
+	
+	// Handle PanGesture
+	@objc func draggedView(_ sender:UIPanGestureRecognizer){
+		self.view.bringSubviewToFront(cameraView)
+		let translation = sender.translation(in: self.view)
+		cameraView.center = CGPoint(x: cameraView.center.x + translation.x, y: cameraView.center.y + translation.y)
+		sender.setTranslation(CGPoint.zero, in: self.view)
+	}
 }
 
 extension MainViewController: UIViewControllerRepresentable {
