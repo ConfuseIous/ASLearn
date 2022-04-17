@@ -1,0 +1,76 @@
+[
+  {
+    "metadataOutputVersion" : "3.0",
+    "shortDescription" : "DeepLab is a state-of-art deep learning model for semantic image segmentation, where the goal is to assign semantic labels (e.g., person, dog, cat and so on) to every pixel in the input image.",
+    "outputSchema" : [
+      {
+        "hasShapeFlexibility" : "0",
+        "isOptional" : "0",
+        "dataType" : "Int32",
+        "formattedType" : "MultiArray (Int32 513 × 513)",
+        "shortDescription" : "Array of integers of the same size as the input image, where each value represents the class of the corresponding pixel.",
+        "shape" : "[513, 513]",
+        "name" : "semanticPredictions",
+        "type" : "MultiArray"
+      }
+    ],
+    "storagePrecision" : "Float32",
+    "modelParameters" : [
+
+    ],
+    "author" : "Original Paper: Mark Sandler, Andrew Howard, Menglong Zhu, Andrey Zhmoginov, Liang-Chieh Chen. DeepLabV3+: Liang-Chieh Chen and Yukun Zhu and George Papandreou and Florian Schroff and Hartwig Adam.",
+    "specificationVersion" : 3,
+    "license" : "Please see https:\/\/github.com\/tensorflow\/tensorflow for license information, and https:\/\/github.com\/tensorflow\/models\/tree\/master\/research\/deeplab for the original source of the model.",
+    "computePrecision" : "Float16",
+    "isUpdatable" : "0",
+    "availability" : {
+      "macOS" : "10.14",
+      "tvOS" : "12.0",
+      "watchOS" : "5.0",
+      "iOS" : "12.0",
+      "macCatalyst" : "12.0"
+    },
+    "modelType" : {
+      "name" : "MLModelType_neuralNetwork"
+    },
+    "inputSchema" : [
+      {
+        "height" : "513",
+        "colorspace" : "RGB",
+        "isOptional" : "0",
+        "width" : "513",
+        "isColor" : "1",
+        "formattedType" : "Image (Color 513 × 513)",
+        "hasSizeFlexibility" : "0",
+        "type" : "Image",
+        "shortDescription" : "Input image to be segmented",
+        "name" : "image"
+      }
+    ],
+    "userDefinedMetadata" : {
+      "com.apple.coreml.model.preview.params" : "{\"labels\": [\"background\", \"aeroplane\", \"bicycle\", \"bird\", \"boat\", \"bottle\", \"bus\", \"car\", \"cat\", \"chair\", \"cow\", \"diningTable\", \"dog\", \"horse\", \"motorbike\", \"person\", \"pottedPlant\", \"sheep\", \"sofa\", \"train\", \"tvOrMonitor\"], \"colors\": [\"0x00000000\", \"0x80000099\", \"0x00800299\", \"0x80800099\", \"0x05008099\", \"0x80008099\", \"0x00808099\", \"0x80808099\", \"0x40000099\", \"0xC0000099\", \"0x3F800199\", \"0xC0800299\", \"0x40028099\", \"0xC0018099\", \"0x40808099\", \"0xC0807F99\", \"0x003F0099\", \"0x80400199\", \"0x00C00099\", \"0x7FC00299\", \"0x01408099\"]}",
+      "com.apple.developer.machine-learning.models.name" : "DeepLabV3.mlmodel",
+      "com.apple.developer.machine-learning.models.version" : "1.3",
+      "com.apple.developer.machine-learning.models.category" : "image",
+      "com.apple.coreml.model.preview.type" : "imageSegmenter",
+      "coremltoolsVersion" : "3.4"
+    },
+    "generatedClassName" : "DeepLabV3",
+    "neuralNetworkLayerTypeHistogram" : {
+      "PoolingAverage" : 1,
+      "Concat" : 1,
+      "UnaryThreshold" : 34,
+      "Convolution" : 55,
+      "ResizeBilinear" : 2,
+      "PaddingConstant" : 1,
+      "ReduceArgmax" : 1,
+      "Add" : 13,
+      "BatchNorm" : 55,
+      "Multiply" : 1,
+      "ActivationLinear" : 68,
+      "ActivationReLU" : 37,
+      "LoadConstant" : 2
+    },
+    "method" : "predict"
+  }
+]
