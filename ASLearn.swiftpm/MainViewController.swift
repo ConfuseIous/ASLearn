@@ -8,6 +8,7 @@
 import UIKit
 import ARKit
 import CoreML
+import Vision
 import SwiftUI
 
 final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate {
@@ -32,12 +33,19 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	
 	let cameraView: UIView = {
 		let cameraView = UIView()
+		cameraView.backgroundColor = .clear
+		//		cameraView.layer.borderColor = UIColor.label.cgColor
+		//		cameraView.layer.borderWidth = 5
+		//		cameraView.layer.cornerRadius = 10
 		cameraView.translatesAutoresizingMaskIntoConstraints = false
 		return cameraView
 	}()
 	
 	let analyseButton: UIButton = {
 		let analyseButton = UIButton()
+		analyseButton.backgroundColor = .systemBlue
+		analyseButton.setTitle("Analyse Gesture", for: .normal)
+		analyseButton.layer.cornerRadius = 10
 		analyseButton.translatesAutoresizingMaskIntoConstraints = false
 		return analyseButton
 	}()
@@ -47,17 +55,13 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	var previewLayer : AVCaptureVideoPreviewLayer!
 	
 	// These optionals are force unwrapped because a failure to initialise a model is critical and termination is a suitable response.
-	var deepLabV3: MLModel = try! DeepLabV3(configuration: .init()).model
-	var aslClassifier: MLModel = try! ASL_Classifier(configuration: .init()).model
+	let deepLabV3 = try! DeepLabV3(configuration: .init()).model
+	//	var aslClassifier: MLModel = try! ASL_Classifier(configuration: .init()).model
+	let aslClassifier = try! VNCoreMLModel(for: ASL_Classifier(configuration: .init()).model)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		cameraView.backgroundColor = .clear
-		
-		analyseButton.backgroundColor = .systemBlue
-		analyseButton.setTitle("Analyse Gesture", for: .normal)
-		analyseButton.layer.cornerRadius = 10
 		analyseButton.addTarget(self, action: #selector(analyseButtonPressed), for: .touchUpInside)
 		
 		// Set up Views
@@ -70,7 +74,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		NSLayoutConstraint.activate([
 			tutorialImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			tutorialImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			tutorialImageView.topAnchor.constraint(equalTo: view.topAnchor),
+			tutorialImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
 			tutorialImageView.heightAnchor.constraint(equalToConstant: 400),
 			
 			infoLabel.topAnchor.constraint(equalTo: tutorialImageView.bottomAnchor, constant: 20),
@@ -106,6 +110,12 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	}
 	
 	func updateInfoText() {
+		/* This function conditionally either
+		 Warns the user to use portrait mode
+		 or
+		 Provides instructions
+		 */
+		
 		UIView.animate(withDuration: 0.5, delay: 2.0, options: .curveEaseOut, animations: {
 			self.infoLabel.alpha = 0.0
 		}, completion: {_ in
@@ -166,7 +176,47 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		let alert = UIAlertController(title: "DEBUG: IMAGE SIZE", message: "\(image.size)", preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
 		self.present(alert, animated: true, completion: nil)
+		
+		let x = removeBackgroundForImage(image: image)
+		print(x.size)
+		tutorialImageView.image = x
+		
+		//		let request = VNCoreMLRequest(model: aslClassifier, completionHandler: handleClassification)
+		//		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
+		//		do {
+		//			try handler.perform([request])
+		//		} catch {
+		//			print(error)
+		//		}
 	}
+	
+	func removeBackgroundForImage(image: UIImage) -> UIImage {
+		let originalSize = image.size
+		
+		let resizedImage = image.resized(to: CGSize(width: 513, height: 513), scale: 1)
+		let pixelBuffer = resizedImage.pixelBuffer(width: Int(513), height: Int(513))
+		let outputPredictionImage = try? deepLabV3.prediction(from: DeepLabV3Input(image: pixelBuffer!))
+		let outputImage = DeepLabV3Output(features: outputPredictionImage!).semanticPredictions.image(min: 0, max: 1, axes: (0, 0, 1))
+		let outputCIImage = CIImage(image: outputImage!)!
+		let maskImage = outputCIImage.removeWhitePixels()
+			
+		let resizedCIImage = CIImage(image: resizedImage)
+		let compositedImage = resizedCIImage!.composite(with: maskImage!)
+		let finalImage = UIImage(ciImage: compositedImage!)
+			.resized(to: originalSize)
+		
+		return finalImage
+	}
+	
+	//	func handleClassification(request: VNRequest, error: Error?) {
+	//		guard let observations = request.results as? [VNClassificationObservation] else { return }
+	//		guard let best = observations.first else { return}
+	//
+	//		DispatchQueue.main.async {
+	//			print(best.identifier)
+	//		}
+	//	}
+	
 	
 	// MARK: - Button Actions
 	@objc func analyseButtonPressed(_ sender: Any) {
@@ -220,4 +270,68 @@ extension MainViewController: UIViewControllerRepresentable {
 	func updateUIViewController(_ uiViewController: MainViewController, context: UIViewControllerRepresentableContext<MainViewController>) {
 		
 	}
+}
+
+// SOURCE - https://gist.github.com/vlondon/491c2e7829d60e835d53a1f6810a34ed
+extension CIImage {
+
+	func removeWhitePixels() -> CIImage? {
+		let chromaCIFilter = chromaKeyFilter()
+		chromaCIFilter?.setValue(self, forKey: kCIInputImageKey)
+		return chromaCIFilter?.outputImage
+	}
+
+	func composite(with mask: CIImage) -> CIImage? {
+		return CIFilter(
+			name: "CISourceOutCompositing",
+			parameters: [
+				kCIInputImageKey: self,
+				kCIInputBackgroundImageKey: mask
+			]
+		)?.outputImage
+	}
+
+	// modified from https://developer.apple.com/documentation/coreimage/applying_a_chroma_key_effect
+	private func chromaKeyFilter() -> CIFilter? {
+		let size = 64
+		var cubeRGB = [Float]()
+
+		for z in 0 ..< size {
+			let blue = CGFloat(z) / CGFloat(size - 1)
+			for y in 0 ..< size {
+				let green = CGFloat(y) / CGFloat(size - 1)
+				for x in 0 ..< size {
+					let red = CGFloat(x) / CGFloat(size - 1)
+					let brightness = getBrightness(red: red, green: green, blue: blue)
+					let alpha: CGFloat = brightness == 1 ? 0 : 1
+					cubeRGB.append(Float(red * alpha))
+					cubeRGB.append(Float(green * alpha))
+					cubeRGB.append(Float(blue * alpha))
+					cubeRGB.append(Float(alpha))
+				}
+			}
+		}
+		
+		let data = cubeRGB.withUnsafeBufferPointer { bufPtr in
+			Data(buffer: bufPtr)
+		}
+		
+		let colorCubeFilter = CIFilter(
+			name: "CIColorCube",
+			parameters: [
+				"inputCubeDimension": size,
+				"inputCubeData": data
+			]
+		)
+		return colorCubeFilter
+	}
+
+	// modified from https://developer.apple.com/documentation/coreimage/applying_a_chroma_key_effect
+	private func getBrightness(red: CGFloat, green: CGFloat, blue: CGFloat) -> CGFloat {
+		let color = UIColor(red: red, green: green, blue: blue, alpha: 1)
+		var brightness: CGFloat = 0
+		color.getHue(nil, saturation: nil, brightness: &brightness, alpha: nil)
+		return brightness
+	}
+
 }
