@@ -44,14 +44,14 @@ struct OrientationView: View {
 					Text("Portrait Mode")
 						.foregroundColor(.red)
 					+
-					Text(".")
+					Text(". This allows you to be centered in relation to the camera.")
 					)
 					.multilineTextAlignment(.center)
 					.font(.system(size: 30))
 					.padding()
 					.fixedSize(horizontal: false, vertical: true)
 				Spacer()
-				NavigationLink(destination: MainViewController(), label: {
+				NavigationLink(destination: MainViewController().navigationBarHidden(true), label: {
 					Image(systemName: "arrow.right.circle.fill")
 						.resizable()
 						.aspectRatio(contentMode: .fit)
