@@ -23,14 +23,11 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	
 	let infoLabel: UILabel = {
 		let infoLabel = UILabel()
-		infoLabel.text = "You can drag the Camera Feed around to a more comfortable position if you wish."
+		infoLabel.textAlignment = .center
+		infoLabel.numberOfLines = 2
+		infoLabel.text = "You can drag the camera feed around to a more comfortable position if you wish.\n"
+		infoLabel.translatesAutoresizingMaskIntoConstraints = false
 		return infoLabel
-	}()
-	
-	let tutorialView: UIView = {
-		let tutorialView = UIView()
-		tutorialView.translatesAutoresizingMaskIntoConstraints = false
-		return tutorialView
 	}()
 	
 	let cameraView: UIView = {
@@ -56,15 +53,16 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		cameraView.backgroundColor = .darkGray
+		cameraView.backgroundColor = .clear
 		
 		analyseButton.backgroundColor = .systemBlue
-		analyseButton.setTitle("Analyse", for: .normal)
+		analyseButton.setTitle("Analyse Gesture", for: .normal)
 		analyseButton.layer.cornerRadius = 10
 		analyseButton.addTarget(self, action: #selector(analyseButtonPressed), for: .touchUpInside)
 		
 		// Set up Views
 		view.addSubview(tutorialImageView)
+		view.addSubview(infoLabel)
 		view.addSubview(analyseButton)
 		view.addSubview(cameraView)
 		
@@ -75,14 +73,18 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 			tutorialImageView.topAnchor.constraint(equalTo: view.topAnchor),
 			tutorialImageView.heightAnchor.constraint(equalToConstant: 400),
 			
+			infoLabel.topAnchor.constraint(equalTo: tutorialImageView.bottomAnchor, constant: 20),
+			infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+			infoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+			
 			analyseButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			analyseButton.widthAnchor.constraint(equalToConstant: 150),
-			analyseButton.topAnchor.constraint(equalTo: tutorialImageView.bottomAnchor, constant: 20),
+			analyseButton.widthAnchor.constraint(equalToConstant: 200),
+			analyseButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 40),
 			
 			cameraView.widthAnchor.constraint(equalToConstant: 300),
 			cameraView.heightAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: 1.0),
 			cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			cameraView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+			cameraView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20)
 		])
 		
 		// Set up UIPanGestureRecognizer
@@ -93,6 +95,27 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	
 	override func viewDidAppear(_ animated: Bool) {
 		startCameraAndSession()
+		
+		updateInfoText()
+	}
+	
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransition(to: size, with: coordinator)
+		
+		updateInfoText()
+	}
+	
+	func updateInfoText() {
+		UIView.animate(withDuration: 0.5, delay: 2.0, options: .curveEaseOut, animations: {
+			self.infoLabel.alpha = 0.0
+		}, completion: {_ in
+			
+			self.infoLabel.text = self.view.window?.windowScene?.interfaceOrientation != .portrait ? "For an ideal experience, please rotate your device to portrait mode." : "Please try to imitate the gesture indicated in the image above with your right hand and press the \"Analyse Gesture\" button with your left."
+			
+			UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+				self.infoLabel.alpha = 1.0
+			}, completion: nil)
+		})
 	}
 	
 	//	 MARK: - Camera
