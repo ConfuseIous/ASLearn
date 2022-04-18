@@ -20,4 +20,4 @@
 - [Remove_Image_Background_DeepLabV3.ipynb](https://github.com/eugenesiow/practical-ml/blob/master/notebooks/Remove_Image_Background_DeepLabV3.ipynb)
 - [deeplabv3_resnet101](https://github.com/tensorflow/models/tree/master/research/deeplab)
 - [DeepLabV3](https://developer.apple.com/machine-learning/models/)
-- [CoreML Helpers](https://github.com/hollance/CoreMLHelpers) is an extremely useful open source library that greatly simplifies working with MLMultiArray and CVPixelBuffer. 
+- [CoreML Helpers](https://github.com/hollance/CoreMLHelpers) is an extremely useful open source library that greatly simplifies working with MLMultiArray and CVPixelBuffer. UIImage+Extensions.swift, UIImage+CVPixelBuffer.swift, MLMultiArray+Image.swift, Math.swift, CGImage+RawBytes.swift and CGImage+CVPixelBuffer.swift are part of CoreML Helpers.
