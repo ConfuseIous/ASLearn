@@ -49,7 +49,9 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	var captureSession = AVCaptureSession()
 	var previewLayer : AVCaptureVideoPreviewLayer!
 	
-	//	var deepLabModel: MLModel = try! DeepLabV3(configuration: .init()).model
+	// These optionals are force unwrapped because a failure to initialise a model is critical and termination is a suitable response.
+	var deepLabV3: MLModel = try! DeepLabV3(configuration: .init()).model
+	var aslClassifier: MLModel = try! ASL_Classifier(configuration: .init()).model
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -59,7 +61,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		analyseButton.backgroundColor = .systemBlue
 		analyseButton.setTitle("Analyse", for: .normal)
 		analyseButton.layer.cornerRadius = 10
-//		analyseButton.addTarget(self, action: #selector(analyseButtonPressed), for: .touchUpInside)
+		analyseButton.addTarget(self, action: #selector(analyseButtonPressed), for: .touchUpInside)
 		
 		// Set up Views
 		view.addSubview(tutorialImageView)
@@ -90,7 +92,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
-//		startCameraAndSession()
+		startCameraAndSession()
 	}
 	
 	//	 MARK: - Camera
@@ -115,40 +117,35 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 					captureSession.connections.first?.videoOrientation = .portrait
 				}
 			} else {
-				fatalError("captureSesssion.canAddInput is false")
+				showCameraError(error: .couldNotAddCamera)
 			}
 		} else {
-			fatalError("Problem with front camera")
+			showCameraError(error: .cameraNotFunctional)
 		}
 	}
 	
 	func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
 		
-		if let error = error {
-			fatalError("Error with didFinishProcessingPhoto: \(error)")
+		if error != nil {
+			showCameraError(error: .processingError)
+			return
 		}
 		
 		guard let dataImage = photo.fileDataRepresentation() else {
-			fatalError("No image found in didFinishProcessingPhoto")
+			showCameraError(error: .processingError)
+			return
 		}
 		
 		let dataProvider = CGDataProvider(data: dataImage as CFData)
 		let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
 		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UIImage.Orientation.right)
 		
-		//		let alert = UIAlertController(title: "DEBUG: IMAGE SIZE", message: "\(image.size)", preferredStyle: .alert)
-		//		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-		//		self.present(alert, animated: true, completion: nil)
-		
-	}
-	
-	func showCameraError() {
-		let alert = UIAlertController(title: "Something seems to be wrong", message: "ASLearn was unable to access your front camera. \nPlease ensure that you've granted camera access and that your front camera is functioning.", preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		let alert = UIAlertController(title: "DEBUG: IMAGE SIZE", message: "\(image.size)", preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
 		self.present(alert, animated: true, completion: nil)
 	}
 	
-	// MARK: - Button Action
+	// MARK: - Button Actions
 	@objc func analyseButtonPressed(_ sender: Any) {
 		// Capture Image
 		let settings = AVCapturePhotoSettings()
@@ -160,6 +157,23 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		]
 		settings.previewPhotoFormat = previewFormat
 		cameraOutput.capturePhoto(with: settings, delegate: self)
+	}
+	
+	func showCameraError(error: CameraError) {
+		var message = ""
+		
+		switch error {
+		case .couldNotAddCamera:
+			message = "ASLearn was unable to access your front camera. \nPlease ensure that you've granted camera access and that your front camera is functioning."
+		case .cameraNotFunctional:
+			message = "ASLearn couldn't find a front camera. \nPlease ensure that you've granted camera access and that your front camera is functioning."
+		case .processingError, .noImageFound:
+			message = "An error occurred while processing your hand gesture. \nPlease try another gesture. If this persists, ensure that you've granted camera access and that your front camera is functioning."
+		}
+		
+		let alert = UIAlertController(title: "Something seems to be wrong", message: message, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 	// Handle PanGesture

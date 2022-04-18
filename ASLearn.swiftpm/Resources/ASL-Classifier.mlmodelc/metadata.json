@@ -1,0 +1,99 @@
+[
+  {
+    "metadataOutputVersion" : "3.0",
+    "outputSchema" : [
+      {
+        "isOptional" : "0",
+        "keyType" : "String",
+        "formattedType" : "Dictionary (String → Double)",
+        "type" : "Dictionary",
+        "name" : "classLabelProbs",
+        "shortDescription" : "Probability of each category"
+      },
+      {
+        "isOptional" : "0",
+        "formattedType" : "String",
+        "type" : "String",
+        "name" : "classLabel",
+        "shortDescription" : "Most likely image category"
+      }
+    ],
+    "modelParameters" : [
+
+    ],
+    "author" : "Karandeep Singh",
+    "specificationVersion" : 3,
+    "license" : "MIT",
+    "isUpdatable" : "0",
+    "availability" : {
+      "macOS" : "10.14",
+      "tvOS" : "12.0",
+      "watchOS" : "unavailable",
+      "iOS" : "12.0",
+      "macCatalyst" : "12.0"
+    },
+    "modelType" : {
+      "name" : "MLModelType_imageClassifier",
+      "structure" : [
+        {
+          "name" : "MLModelType_visionFeaturePrint"
+        },
+        {
+          "name" : "MLModelType_glmClassifier"
+        }
+      ]
+    },
+    "inputSchema" : [
+      {
+        "formattedType" : "Image (Color 299 × 299)",
+        "hasSizeFlexibility" : "1",
+        "shortDescription" : "Input image to be classified",
+        "sizeRange" : "[[299, -1], [299, -1]]",
+        "width" : "299",
+        "type" : "Image",
+        "isColor" : "1",
+        "height" : "299",
+        "sizeFlexibility" : "299... × 299...",
+        "colorspace" : "BGR",
+        "name" : "image",
+        "isOptional" : "0"
+      }
+    ],
+    "classLabels" : [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "generatedClassName" : "ASL_Classifier",
+    "userDefinedMetadata" : {
+      "com.apple.createml.app.tag" : "78.8",
+      "com.apple.createml.version" : "12.2.1",
+      "com.apple.coreml.model.preview.type" : "imageClassifier",
+      "com.apple.createml.app.version" : "3.0"
+    },
+    "method" : "predict"
+  }
+]
