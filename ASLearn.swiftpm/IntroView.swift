@@ -40,7 +40,7 @@ struct IntroView: View {
 					.padding()
 					.fixedSize(horizontal: false, vertical: true)
 				Spacer()
-				NavigationLink(destination: OrientationView(), label: {
+				NavigationLink(destination: OrientationView().navigationBarHidden(true).navigationViewStyle(.stack), label: {
 					Image(systemName: "arrow.right.circle.fill")
 						.resizable()
 						.aspectRatio(contentMode: .fit)
