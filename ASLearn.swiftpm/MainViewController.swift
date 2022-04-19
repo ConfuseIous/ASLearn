@@ -8,6 +8,7 @@
 import UIKit
 import ARKit
 import CoreML
+import Vision
 import SwiftUI
 
 final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate {
@@ -23,24 +24,28 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	
 	let infoLabel: UILabel = {
 		let infoLabel = UILabel()
-		infoLabel.text = "You can drag the Camera Feed around to a more comfortable position if you wish."
+		infoLabel.textAlignment = .center
+		infoLabel.numberOfLines = 2
+		infoLabel.text = "You can drag the camera feed around to a more comfortable position if you wish.\n"
+		infoLabel.translatesAutoresizingMaskIntoConstraints = false
 		return infoLabel
-	}()
-	
-	let tutorialView: UIView = {
-		let tutorialView = UIView()
-		tutorialView.translatesAutoresizingMaskIntoConstraints = false
-		return tutorialView
 	}()
 	
 	let cameraView: UIView = {
 		let cameraView = UIView()
+		cameraView.backgroundColor = .clear
+		//		cameraView.layer.borderColor = UIColor.label.cgColor
+		//		cameraView.layer.borderWidth = 5
+		//		cameraView.layer.cornerRadius = 10
 		cameraView.translatesAutoresizingMaskIntoConstraints = false
 		return cameraView
 	}()
 	
 	let analyseButton: UIButton = {
 		let analyseButton = UIButton()
+		analyseButton.backgroundColor = .systemBlue
+		analyseButton.setTitle("Analyse Gesture", for: .normal)
+		analyseButton.layer.cornerRadius = 10
 		analyseButton.translatesAutoresizingMaskIntoConstraints = false
 		return analyseButton
 	}()
@@ -49,20 +54,19 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	var captureSession = AVCaptureSession()
 	var previewLayer : AVCaptureVideoPreviewLayer!
 	
-	//	var deepLabModel: MLModel = try! DeepLabV3(configuration: .init()).model
+	// These optionals are force unwrapped because a failure to initialise a model is critical and termination is a suitable response.
+	let deepLabV3 = try! DeepLabV3(configuration: .init()).model
+	//	var aslClassifier: MLModel = try! ASL_Classifier(configuration: .init()).model
+	let aslClassifier = try! VNCoreMLModel(for: ASL_Classifier(configuration: .init()).model)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		cameraView.backgroundColor = .darkGray
-		
-		analyseButton.backgroundColor = .systemBlue
-		analyseButton.setTitle("Analyse", for: .normal)
-		analyseButton.layer.cornerRadius = 10
-//		analyseButton.addTarget(self, action: #selector(analyseButtonPressed), for: .touchUpInside)
+		analyseButton.addTarget(self, action: #selector(analyseButtonPressed), for: .touchUpInside)
 		
 		// Set up Views
 		view.addSubview(tutorialImageView)
+		view.addSubview(infoLabel)
 		view.addSubview(analyseButton)
 		view.addSubview(cameraView)
 		
@@ -70,17 +74,21 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		NSLayoutConstraint.activate([
 			tutorialImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			tutorialImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			tutorialImageView.topAnchor.constraint(equalTo: view.topAnchor),
+			tutorialImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
 			tutorialImageView.heightAnchor.constraint(equalToConstant: 400),
 			
+			infoLabel.topAnchor.constraint(equalTo: tutorialImageView.bottomAnchor, constant: 20),
+			infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+			infoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+			
 			analyseButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			analyseButton.widthAnchor.constraint(equalToConstant: 150),
-			analyseButton.topAnchor.constraint(equalTo: tutorialImageView.bottomAnchor, constant: 20),
+			analyseButton.widthAnchor.constraint(equalToConstant: 200),
+			analyseButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 40),
 			
 			cameraView.widthAnchor.constraint(equalToConstant: 300),
 			cameraView.heightAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: 1.0),
 			cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			cameraView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+			cameraView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20)
 		])
 		
 		// Set up UIPanGestureRecognizer
@@ -90,7 +98,34 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
-//		startCameraAndSession()
+		startCameraAndSession()
+		
+		updateInfoText()
+	}
+	
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		super.viewWillTransition(to: size, with: coordinator)
+		
+		updateInfoText()
+	}
+	
+	func updateInfoText() {
+		/* This function conditionally either
+		 Warns the user to use portrait mode
+		 or
+		 Provides instructions
+		 */
+		
+		UIView.animate(withDuration: 0.5, delay: 2.0, options: .curveEaseOut, animations: {
+			self.infoLabel.alpha = 0.0
+		}, completion: {_ in
+			
+			self.infoLabel.text = self.view.window?.windowScene?.interfaceOrientation != .portrait ? "For an ideal experience, please rotate your device to portrait mode." : "Please try to imitate the gesture indicated in the image above with your right hand and press the \"Analyse Gesture\" button with your left."
+			
+			UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+				self.infoLabel.alpha = 1.0
+			}, completion: nil)
+		})
 	}
 	
 	//	 MARK: - Camera
@@ -115,40 +150,75 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 					captureSession.connections.first?.videoOrientation = .portrait
 				}
 			} else {
-				fatalError("captureSesssion.canAddInput is false")
+				showCameraError(error: .couldNotAddCamera)
 			}
 		} else {
-			fatalError("Problem with front camera")
+			showCameraError(error: .cameraNotFunctional)
 		}
 	}
 	
 	func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
 		
-		if let error = error {
-			fatalError("Error with didFinishProcessingPhoto: \(error)")
+		if error != nil {
+			showCameraError(error: .processingError)
+			return
 		}
 		
 		guard let dataImage = photo.fileDataRepresentation() else {
-			fatalError("No image found in didFinishProcessingPhoto")
+			showCameraError(error: .processingError)
+			return
 		}
 		
 		let dataProvider = CGDataProvider(data: dataImage as CFData)
 		let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
 		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UIImage.Orientation.right)
 		
-		//		let alert = UIAlertController(title: "DEBUG: IMAGE SIZE", message: "\(image.size)", preferredStyle: .alert)
-		//		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-		//		self.present(alert, animated: true, completion: nil)
-		
-	}
-	
-	func showCameraError() {
-		let alert = UIAlertController(title: "Something seems to be wrong", message: "ASLearn was unable to access your front camera. \nPlease ensure that you've granted camera access and that your front camera is functioning.", preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		let alert = UIAlertController(title: "DEBUG: IMAGE SIZE", message: "\(image.size)", preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
 		self.present(alert, animated: true, completion: nil)
+		
+		let x = removeBackgroundForImage(image: image)
+		print(x.size)
+		tutorialImageView.image = x
+		
+		//		let request = VNCoreMLRequest(model: aslClassifier, completionHandler: handleClassification)
+		//		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
+		//		do {
+		//			try handler.perform([request])
+		//		} catch {
+		//			print(error)
+		//		}
 	}
 	
-	// MARK: - Button Action
+	func removeBackgroundForImage(image: UIImage) -> UIImage {
+		let originalSize = image.size
+		
+		let resizedImage = image.resized(to: CGSize(width: 513, height: 513), scale: 1)
+		let pixelBuffer = resizedImage.pixelBuffer(width: Int(513), height: Int(513))
+		let outputPredictionImage = try? deepLabV3.prediction(from: DeepLabV3Input(image: pixelBuffer!))
+		let outputImage = DeepLabV3Output(features: outputPredictionImage!).semanticPredictions.image(min: 0, max: 1, axes: (0, 0, 1))
+		let outputCIImage = CIImage(image: outputImage!)!
+		let maskImage = outputCIImage.removeWhitePixels()
+			
+		let resizedCIImage = CIImage(image: resizedImage)
+		let compositedImage = resizedCIImage!.composite(with: maskImage!)
+		let finalImage = UIImage(ciImage: compositedImage!)
+			.resized(to: originalSize)
+		
+		return finalImage
+	}
+	
+	//	func handleClassification(request: VNRequest, error: Error?) {
+	//		guard let observations = request.results as? [VNClassificationObservation] else { return }
+	//		guard let best = observations.first else { return}
+	//
+	//		DispatchQueue.main.async {
+	//			print(best.identifier)
+	//		}
+	//	}
+	
+	
+	// MARK: - Button Actions
 	@objc func analyseButtonPressed(_ sender: Any) {
 		// Capture Image
 		let settings = AVCapturePhotoSettings()
@@ -160,6 +230,23 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		]
 		settings.previewPhotoFormat = previewFormat
 		cameraOutput.capturePhoto(with: settings, delegate: self)
+	}
+	
+	func showCameraError(error: CameraError) {
+		var message = ""
+		
+		switch error {
+		case .couldNotAddCamera:
+			message = "ASLearn was unable to access your front camera. \nPlease ensure that you've granted camera access and that your front camera is functioning."
+		case .cameraNotFunctional:
+			message = "ASLearn couldn't find a front camera. \nPlease ensure that you've granted camera access and that your front camera is functioning."
+		case .processingError, .noImageFound:
+			message = "An error occurred while processing your hand gesture. \nPlease try another gesture. If this persists, ensure that you've granted camera access and that your front camera is functioning."
+		}
+		
+		let alert = UIAlertController(title: "Something seems to be wrong", message: message, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 	// Handle PanGesture
@@ -183,4 +270,68 @@ extension MainViewController: UIViewControllerRepresentable {
 	func updateUIViewController(_ uiViewController: MainViewController, context: UIViewControllerRepresentableContext<MainViewController>) {
 		
 	}
+}
+
+// SOURCE - https://gist.github.com/vlondon/491c2e7829d60e835d53a1f6810a34ed
+extension CIImage {
+
+	func removeWhitePixels() -> CIImage? {
+		let chromaCIFilter = chromaKeyFilter()
+		chromaCIFilter?.setValue(self, forKey: kCIInputImageKey)
+		return chromaCIFilter?.outputImage
+	}
+
+	func composite(with mask: CIImage) -> CIImage? {
+		return CIFilter(
+			name: "CISourceOutCompositing",
+			parameters: [
+				kCIInputImageKey: self,
+				kCIInputBackgroundImageKey: mask
+			]
+		)?.outputImage
+	}
+
+	// modified from https://developer.apple.com/documentation/coreimage/applying_a_chroma_key_effect
+	private func chromaKeyFilter() -> CIFilter? {
+		let size = 64
+		var cubeRGB = [Float]()
+
+		for z in 0 ..< size {
+			let blue = CGFloat(z) / CGFloat(size - 1)
+			for y in 0 ..< size {
+				let green = CGFloat(y) / CGFloat(size - 1)
+				for x in 0 ..< size {
+					let red = CGFloat(x) / CGFloat(size - 1)
+					let brightness = getBrightness(red: red, green: green, blue: blue)
+					let alpha: CGFloat = brightness == 1 ? 0 : 1
+					cubeRGB.append(Float(red * alpha))
+					cubeRGB.append(Float(green * alpha))
+					cubeRGB.append(Float(blue * alpha))
+					cubeRGB.append(Float(alpha))
+				}
+			}
+		}
+		
+		let data = cubeRGB.withUnsafeBufferPointer { bufPtr in
+			Data(buffer: bufPtr)
+		}
+		
+		let colorCubeFilter = CIFilter(
+			name: "CIColorCube",
+			parameters: [
+				"inputCubeDimension": size,
+				"inputCubeData": data
+			]
+		)
+		return colorCubeFilter
+	}
+
+	// modified from https://developer.apple.com/documentation/coreimage/applying_a_chroma_key_effect
+	private func getBrightness(red: CGFloat, green: CGFloat, blue: CGFloat) -> CGFloat {
+		let color = UIColor(red: red, green: green, blue: blue, alpha: 1)
+		var brightness: CGFloat = 0
+		color.getHue(nil, saturation: nil, brightness: &brightness, alpha: nil)
+		return brightness
+	}
+
 }
