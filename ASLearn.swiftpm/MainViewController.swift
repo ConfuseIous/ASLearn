@@ -109,7 +109,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		updateInfoText()
 	}
 	
-	func updateInfoText() {
+	func updateInfoText(error: String? = nil) {
 		/* This function conditionally either
 		 Warns the user to use portrait mode
 		 or
@@ -119,8 +119,11 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		UIView.animate(withDuration: 0.5, delay: 2.0, options: .curveEaseOut, animations: {
 			self.infoLabel.alpha = 0.0
 		}, completion: {_ in
-			
-			self.infoLabel.text = self.view.window?.windowScene?.interfaceOrientation != .portrait ? "For an ideal experience, please rotate your device to portrait mode." : "Please try to imitate the gesture indicated in the image above with your right hand and press the \"Analyse Gesture\" button with your left."
+			if let error = error {
+				self.infoLabel.text = error
+			} else {
+				self.infoLabel.text = self.view.window?.windowScene?.interfaceOrientation != .portrait ? "For an ideal experience, please rotate your device to portrait mode." : "Please try to imitate the gesture indicated in the image above with your right hand and press the \"Analyse Gesture\" button with your left."
+			}
 			
 			UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
 				self.infoLabel.alpha = 1.0
@@ -171,23 +174,19 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		let dataProvider = CGDataProvider(data: dataImage as CFData)
 		let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
-		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UIImage.Orientation.right)
-		
-		let alert = UIAlertController(title: "DEBUG: IMAGE SIZE", message: "\(image.size)", preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-		self.present(alert, animated: true, completion: nil)
-		
+//		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UIImage.Orientation.right)
+		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UserDefaults.standard.integer(forKey: "selectedHandIndex") == 0 ? .left : .leftMirrored)
+		print("DEBUG: IMAGE SIZE = \(image.size)")
 		let x = removeBackgroundForImage(image: image)
-		print(x.size)
 		tutorialImageView.image = x
 		
-		//		let request = VNCoreMLRequest(model: aslClassifier, completionHandler: handleClassification)
-		//		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
-		//		do {
-		//			try handler.perform([request])
-		//		} catch {
-		//			print(error)
-		//		}
+		let request = VNCoreMLRequest(model: aslClassifier, completionHandler: handleClassification)
+		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
+		do {
+			try handler.perform([request])
+		} catch {
+			print(error)
+		}
 	}
 	
 	func removeBackgroundForImage(image: UIImage) -> UIImage {
@@ -199,24 +198,23 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		let outputImage = DeepLabV3Output(features: outputPredictionImage!).semanticPredictions.image(min: 0, max: 1, axes: (0, 0, 1))
 		let outputCIImage = CIImage(image: outputImage!)!
 		let maskImage = outputCIImage.removeWhitePixels()
-			
+		
 		let resizedCIImage = CIImage(image: resizedImage)
 		let compositedImage = resizedCIImage!.composite(with: maskImage!)
-		let finalImage = UIImage(ciImage: compositedImage!)
+		let finalImage = UIImage(ciImage: resizedCIImage!)
 			.resized(to: originalSize)
 		
 		return finalImage
 	}
 	
-	//	func handleClassification(request: VNRequest, error: Error?) {
-	//		guard let observations = request.results as? [VNClassificationObservation] else { return }
-	//		guard let best = observations.first else { return}
-	//
-	//		DispatchQueue.main.async {
-	//			print(best.identifier)
-	//		}
-	//	}
-	
+	func handleClassification(request: VNRequest, error: Error?) {
+		guard let observations = request.results as? [VNClassificationObservation] else { return }
+		guard let best = observations.first else { return}
+		
+		DispatchQueue.main.async {
+			print("DEBUG: Classified as \(best.identifier) with a confidence of \(best.confidence)")
+		}
+	}
 	
 	// MARK: - Button Actions
 	@objc func analyseButtonPressed(_ sender: Any) {
@@ -241,7 +239,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		case .cameraNotFunctional:
 			message = "ASLearn couldn't find a front camera. \nPlease ensure that you've granted camera access and that your front camera is functioning."
 		case .processingError, .noImageFound:
-			message = "An error occurred while processing your hand gesture. \nPlease try another gesture. If this persists, ensure that you've granted camera access and that your front camera is functioning."
+			message = "An error occurred while processing your hand gesture. \nPlease try another gesture. If this persists, please adjust your lighting conditions and only position your hand in the frame."
 		}
 		
 		let alert = UIAlertController(title: "Something seems to be wrong", message: message, preferredStyle: .alert)
@@ -274,13 +272,13 @@ extension MainViewController: UIViewControllerRepresentable {
 
 // SOURCE - https://gist.github.com/vlondon/491c2e7829d60e835d53a1f6810a34ed
 extension CIImage {
-
+	
 	func removeWhitePixels() -> CIImage? {
 		let chromaCIFilter = chromaKeyFilter()
 		chromaCIFilter?.setValue(self, forKey: kCIInputImageKey)
 		return chromaCIFilter?.outputImage
 	}
-
+	
 	func composite(with mask: CIImage) -> CIImage? {
 		return CIFilter(
 			name: "CISourceOutCompositing",
@@ -290,12 +288,12 @@ extension CIImage {
 			]
 		)?.outputImage
 	}
-
+	
 	// modified from https://developer.apple.com/documentation/coreimage/applying_a_chroma_key_effect
 	private func chromaKeyFilter() -> CIFilter? {
 		let size = 64
 		var cubeRGB = [Float]()
-
+		
 		for z in 0 ..< size {
 			let blue = CGFloat(z) / CGFloat(size - 1)
 			for y in 0 ..< size {
@@ -325,7 +323,7 @@ extension CIImage {
 		)
 		return colorCubeFilter
 	}
-
+	
 	// modified from https://developer.apple.com/documentation/coreimage/applying_a_chroma_key_effect
 	private func getBrightness(red: CGFloat, green: CGFloat, blue: CGFloat) -> CGFloat {
 		let color = UIColor(red: red, green: green, blue: blue, alpha: 1)
@@ -333,5 +331,5 @@ extension CIImage {
 		color.getHue(nil, saturation: nil, brightness: &brightness, alpha: nil)
 		return brightness
 	}
-
+	
 }
