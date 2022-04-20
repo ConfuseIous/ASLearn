@@ -32,6 +32,25 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		return infoLabel
 	}()
 	
+	let countdownView: UIView = {
+		let countdownView = UIView()
+		countdownView.backgroundColor = .gray.withAlphaComponent(0.7)
+		countdownView.layer.cornerRadius = 10
+		countdownView.alpha = 0
+		countdownView.translatesAutoresizingMaskIntoConstraints = false
+		return countdownView
+	}()
+	
+	let countdownLabel: UILabel = {
+		let countdownLabel = UILabel()
+		countdownLabel.textAlignment = .center
+		countdownLabel.numberOfLines = 1
+		countdownLabel.text = "3"
+		countdownLabel.font = .systemFont(ofSize: 25)
+		countdownLabel.translatesAutoresizingMaskIntoConstraints = false
+		return countdownLabel
+	}()
+	
 	let cameraView: UIView = {
 		let cameraView = UIView()
 		cameraView.backgroundColor = .clear
@@ -58,7 +77,15 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	// These optionals are force unwrapped because a failure to initialise a model is critical and termination is a suitable response.
 	let deepLabV3 = try! DeepLabV3(configuration: .init()).model
 	//	var aslClassifier: MLModel = try! ASL_Classifier(configuration: .init()).model
-	let aslClassifier = try! VNCoreMLModel(for: ASL_Classifier(configuration: .init()).model)
+
+	var aslClassifier: VNCoreMLModel = {
+		let config = MLModelConfiguration()
+		config.computeUnits = .cpuOnly
+		
+		let aslClassifier = try! VNCoreMLModel(for: ASL(configuration: config).model)
+		
+		return aslClassifier
+	}()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -68,8 +95,12 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		// Set up Views
 		view.addSubview(tutorialImageView)
 		view.addSubview(infoLabel)
+		view.addSubview(cameraView)
 		view.addSubview(analyseButton)
 		view.addSubview(cameraView)
+		
+		countdownView.addSubview(countdownLabel)
+		view.addSubview(countdownView)
 		
 		// Set up Constraints
 		NSLayoutConstraint.activate([
@@ -81,6 +112,14 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 			infoLabel.topAnchor.constraint(equalTo: tutorialImageView.bottomAnchor, constant: 20),
 			infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 			infoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+			
+			countdownView.widthAnchor.constraint(equalToConstant: 100),
+			countdownView.heightAnchor.constraint(equalToConstant: 100),
+			countdownView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+			countdownView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			
+			countdownLabel.centerYAnchor.constraint(equalTo: countdownView.centerYAnchor),
+			countdownLabel.centerXAnchor.constraint(equalTo: countdownView.centerXAnchor),
 			
 			analyseButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			analyseButton.widthAnchor.constraint(equalToConstant: 200),
@@ -167,7 +206,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 			showCameraError(error: .processingError)
 			return
 		}
-		
+			
 		guard let dataImage = photo.fileDataRepresentation() else {
 			showCameraError(error: .processingError)
 			return
@@ -175,13 +214,15 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		let dataProvider = CGDataProvider(data: dataImage as CFData)
 		let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
-		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UserDefaults.standard.integer(forKey: "selectedHandIndex") == 0 ? .left : .leftMirrored)
+		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UserDefaults.standard.integer(forKey: "selectedHandIndex") == 0 ? .leftMirrored : .left)
+		
 		print("DEBUG: IMAGE SIZE = \(image.size)")
 		
 		let x = removeBackgroundForImage(image: image)
 		tutorialImageView.image = x
 		
-		tutorialImageView.image = UIImage(data: x.jpegData(compressionQuality: .leastNormalMagnitude)!)
+		#warning("handle potential crash")
+		tutorialImageView.image = UIImage(data: x.jpegData(compressionQuality: 1.0)!)
 		
 		let request = VNCoreMLRequest(model: aslClassifier, completionHandler: handleClassification)
 		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
@@ -221,16 +262,41 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	
 	// MARK: - Button Actions
 	@objc func analyseButtonPressed(_ sender: Any) {
-		// Capture Image
-		let settings = AVCapturePhotoSettings()
-		let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
-		let previewFormat = [
-			kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
-			kCVPixelBufferWidthKey as String: 200,
-			kCVPixelBufferHeightKey as String: 200
-		]
-		settings.previewPhotoFormat = previewFormat
-		cameraOutput.capturePhoto(with: settings, delegate: self)
+		var remainingSecondsForTimer = 3
+		
+		self.countdownLabel.text = String(3)
+		
+		UIView.animate(withDuration: 0.5, animations: { [weak self] in
+			self?.countdownView.alpha = 1.0
+		})
+		
+		Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+			remainingSecondsForTimer -= 1
+			self.countdownLabel.text = String(remainingSecondsForTimer)
+			
+			if remainingSecondsForTimer == 0 {
+				timer.invalidate()
+				
+				// Process in separate queue to avoid blocking UI
+				DispatchQueue.global().async {
+					// Capture Image
+					let settings = AVCapturePhotoSettings()
+					let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+					let previewFormat = [
+						kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
+						kCVPixelBufferWidthKey as String: 200,
+						kCVPixelBufferHeightKey as String: 200
+					]
+					
+					settings.previewPhotoFormat = previewFormat
+					self.cameraOutput.capturePhoto(with: settings, delegate: self)
+				}
+				
+				UIView.animate(withDuration: 0.5, animations: { [weak self] in
+					self?.countdownView.alpha = 0.0
+				})
+			}
+		}
 	}
 	
 	func showCameraError(error: CameraError) {
