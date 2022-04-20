@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HandSelectionView: View {
 	
-	@AppStorage("selectedHandIndex") var selectedHandIndex = 1
+	@AppStorage("selectedHandIndex") var selectedHandIndex = 0
 	
 	var body: some View {
 		NavigationView {
