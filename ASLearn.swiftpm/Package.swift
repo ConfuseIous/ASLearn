@@ -28,9 +28,7 @@ let package = Package(
             ],
             supportedInterfaceOrientations: [
                 .portrait,
-                .landscapeRight,
-                .landscapeLeft,
-                .portraitUpsideDown(.when(deviceFamilies: [.pad]))
+                .portraitUpsideDown()
             ],
             capabilities: [
                 .camera(purposeString: "ASLearn uses the camera to recognise hand gestures and translate them to text.")
