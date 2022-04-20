@@ -17,8 +17,9 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	
 	let tutorialImageView: UIImageView = {
 		let tutorialImageView = UIImageView()
-		tutorialImageView.translatesAutoresizingMaskIntoConstraints = false
+		tutorialImageView.contentMode = .scaleAspectFit
 		tutorialImageView.image = UIImage(named: "black")
+		tutorialImageView.translatesAutoresizingMaskIntoConstraints = false
 		return tutorialImageView
 	}()
 	
@@ -174,11 +175,13 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		let dataProvider = CGDataProvider(data: dataImage as CFData)
 		let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
-//		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UIImage.Orientation.right)
 		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UserDefaults.standard.integer(forKey: "selectedHandIndex") == 0 ? .left : .leftMirrored)
 		print("DEBUG: IMAGE SIZE = \(image.size)")
+		
 		let x = removeBackgroundForImage(image: image)
 		tutorialImageView.image = x
+		
+		tutorialImageView.image = UIImage(data: x.jpegData(compressionQuality: .leastNormalMagnitude)!)
 		
 		let request = VNCoreMLRequest(model: aslClassifier, completionHandler: handleClassification)
 		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
@@ -201,7 +204,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		let resizedCIImage = CIImage(image: resizedImage)
 		let compositedImage = resizedCIImage!.composite(with: maskImage!)
-		let finalImage = UIImage(ciImage: resizedCIImage!)
+		let finalImage = UIImage(ciImage: compositedImage!)
 			.resized(to: originalSize)
 		
 		return finalImage
