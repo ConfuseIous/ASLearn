@@ -8,65 +8,70 @@ import CoreML
 
 
 /// Model Prediction Input Type
-@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, *)
+@available(watchOS, unavailable)
 class ASLInput : MLFeatureProvider {
 
-	/// conv2d_3_input as color (kCVPixelFormatType_32BGRA) image buffer, 224 pixels wide by 224 pixels high
-	var conv2d_3_input: CVPixelBuffer
+	/// Input image to be classified as color (kCVPixelFormatType_32BGRA) image buffer, 299 pixels wide by 299 pixels high
+	var image: CVPixelBuffer
 
 	var featureNames: Set<String> {
 		get {
-			return ["conv2d_3_input"]
+			return ["image"]
 		}
 	}
 	
 	func featureValue(for featureName: String) -> MLFeatureValue? {
-		if (featureName == "conv2d_3_input") {
-			return MLFeatureValue(pixelBuffer: conv2d_3_input)
+		if (featureName == "image") {
+			return MLFeatureValue(pixelBuffer: image)
 		}
 		return nil
 	}
 	
-	init(conv2d_3_input: CVPixelBuffer) {
-		self.conv2d_3_input = conv2d_3_input
+	init(image: CVPixelBuffer) {
+		self.image = image
 	}
 
-	convenience init(conv2d_3_inputWith conv2d_3_input: CGImage) throws {
-		self.init(conv2d_3_input: try MLFeatureValue(cgImage: conv2d_3_input, pixelsWide: 224, pixelsHigh: 224, pixelFormatType: kCVPixelFormatType_32ARGB, options: nil).imageBufferValue!)
+	@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+	convenience init(imageWith image: CGImage) throws {
+		self.init(image: try MLFeatureValue(cgImage: image, pixelsWide: 299, pixelsHigh: 299, pixelFormatType: kCVPixelFormatType_32BGRA, options: nil).imageBufferValue!)
 	}
 
-	convenience init(conv2d_3_inputAt conv2d_3_input: URL) throws {
-		self.init(conv2d_3_input: try MLFeatureValue(imageAt: conv2d_3_input, pixelsWide: 224, pixelsHigh: 224, pixelFormatType: kCVPixelFormatType_32ARGB, options: nil).imageBufferValue!)
+	@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+	convenience init(imageAt image: URL) throws {
+		self.init(image: try MLFeatureValue(imageAt: image, pixelsWide: 299, pixelsHigh: 299, pixelFormatType: kCVPixelFormatType_32BGRA, options: nil).imageBufferValue!)
 	}
 
-	func setConv2d_3_input(with conv2d_3_input: CGImage) throws  {
-		self.conv2d_3_input = try MLFeatureValue(cgImage: conv2d_3_input, pixelsWide: 224, pixelsHigh: 224, pixelFormatType: kCVPixelFormatType_32ARGB, options: nil).imageBufferValue!
+	@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+	func setImage(with image: CGImage) throws  {
+		self.image = try MLFeatureValue(cgImage: image, pixelsWide: 299, pixelsHigh: 299, pixelFormatType: kCVPixelFormatType_32BGRA, options: nil).imageBufferValue!
 	}
 
-	func setConv2d_3_input(with conv2d_3_input: URL) throws  {
-		self.conv2d_3_input = try MLFeatureValue(imageAt: conv2d_3_input, pixelsWide: 224, pixelsHigh: 224, pixelFormatType: kCVPixelFormatType_32ARGB, options: nil).imageBufferValue!
+	@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+	func setImage(with image: URL) throws  {
+		self.image = try MLFeatureValue(imageAt: image, pixelsWide: 299, pixelsHigh: 299, pixelFormatType: kCVPixelFormatType_32BGRA, options: nil).imageBufferValue!
 	}
 
 }
 
 
 /// Model Prediction Output Type
-@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, *)
+@available(watchOS, unavailable)
 class ASLOutput : MLFeatureProvider {
 
 	/// Source provided by CoreML
 	private let provider : MLFeatureProvider
 
-	/// Identity as multidimensional array of floats
-	lazy var Identity: MLMultiArray = {
-		[unowned self] in return self.provider.featureValue(for: "Identity")!.multiArrayValue
-	}()!
+	/// Probability of each category as dictionary of strings to doubles
+	lazy var classLabelProbs: [String : Double] = {
+		[unowned self] in return self.provider.featureValue(for: "classLabelProbs")!.dictionaryValue as! [String : Double]
+	}()
 
-	/// Identity as multidimensional array of floats
-	@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-	var IdentityShapedArray: MLShapedArray<Float> {
-		return MLShapedArray<Float>(self.Identity)
-	}
+	/// Most likely image category as string value
+	lazy var classLabel: String = {
+		[unowned self] in return self.provider.featureValue(for: "classLabel")!.stringValue
+	}()
 
 	var featureNames: Set<String> {
 		return self.provider.featureNames
@@ -76,8 +81,8 @@ class ASLOutput : MLFeatureProvider {
 		return self.provider.featureValue(for: featureName)
 	}
 
-	init(Identity: MLMultiArray) {
-		self.provider = try! MLDictionaryFeatureProvider(dictionary: ["Identity" : MLFeatureValue(multiArray: Identity)])
+	init(classLabelProbs: [String : Double], classLabel: String) {
+		self.provider = try! MLDictionaryFeatureProvider(dictionary: ["classLabelProbs" : MLFeatureValue(dictionary: classLabelProbs as [AnyHashable : NSNumber]), "classLabel" : MLFeatureValue(string: classLabel)])
 	}
 
 	init(features: MLFeatureProvider) {
@@ -87,7 +92,8 @@ class ASLOutput : MLFeatureProvider {
 
 
 /// Class for model loading and prediction
-@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(macOS 10.14, iOS 12.0, tvOS 12.0, *)
+@available(watchOS, unavailable)
 class ASL {
 	let model: MLModel
 
@@ -252,14 +258,14 @@ class ASL {
 		Make a prediction using the convenience interface
 
 		- parameters:
-			- conv2d_3_input as color (kCVPixelFormatType_32BGRA) image buffer, 224 pixels wide by 224 pixels high
+			- image: Input image to be classified as color (kCVPixelFormatType_32BGRA) image buffer, 299 pixels wide by 299 pixels high
 
 		- throws: an NSError object that describes the problem
 
 		- returns: the result of the prediction as ASLOutput
 	*/
-	func prediction(conv2d_3_input: CVPixelBuffer) throws -> ASLOutput {
-		let input_ = ASLInput(conv2d_3_input: conv2d_3_input)
+	func prediction(image: CVPixelBuffer) throws -> ASLOutput {
+		let input_ = ASLInput(image: image)
 		return try self.prediction(input: input_)
 	}
 
