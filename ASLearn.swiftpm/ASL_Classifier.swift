@@ -243,7 +243,7 @@ class ASL {
 
 		- parameters:
 		   - input: the input to the prediction as ASLInput
-		   - options: prediction options
+		   - options: prediction options 
 
 		- throws: an NSError object that describes the problem
 
@@ -274,7 +274,7 @@ class ASL {
 
 		- parameters:
 		   - inputs: the inputs to the prediction as [ASLInput]
-		   - options: prediction options
+		   - options: prediction options 
 
 		- throws: an NSError object that describes the problem
 
