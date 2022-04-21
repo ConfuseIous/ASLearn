@@ -26,22 +26,49 @@ struct HandSelectionView: View {
 						.resizable()
 						.aspectRatio(contentMode: .fit)
 						.frame(width: 50)
-					
 					Spacer()
 				}
-				.padding(.top, 20)
 				.padding(.bottom, 50)
 				Text("For maximum accuracy, please specify the hand you'd like to create gestures with.")
 					.multilineTextAlignment(.center)
 					.font(.system(size: 30))
 					.padding()
 					.fixedSize(horizontal: false, vertical: true)
-				Picker("Preferred Hand", selection: $selectedHandIndex, content: {
-					Text("Left").tag(0)
-					Text("Right").tag(1)
-				})
-				.pickerStyle(SegmentedPickerStyle())
-				.padding()
+				HStack {
+					ZStack(alignment: .center) {
+						RoundedRectangle(cornerRadius: 15)
+							.background(selectedHandIndex == 0 ? Color.blue : Color.gray)
+							.opacity(0.6)
+							.frame(width: 300, height: 300)
+						Button(action: {
+							selectedHandIndex = 0
+						}) {
+							Text("Left")
+								.padding(.top)
+								.foregroundColor(.white)
+								.frame(width: 300, height: 300)
+						}
+						.frame(width: 300, height: 300)
+						.buttonStyle(.borderless)
+						.padding()
+					}.padding()
+					ZStack(alignment: .center) {
+						RoundedRectangle(cornerRadius: 15)
+							.background(selectedHandIndex == 0 ? Color.gray : Color.blue)
+							.opacity(0.6)
+							.frame(width: 300, height: 300)
+						Button(action: {
+							selectedHandIndex = 1
+						}) {
+							Text("Right")
+								.foregroundColor(.white)
+								.frame(width: 300, height: 300)
+						}
+						.frame(width: 300, height: 300)
+						.buttonStyle(.borderless)
+						.padding()
+					}.padding()
+				}
 				Text("You may find it easier to select your dominant hand.")
 					.foregroundColor(.secondary)
 					.multilineTextAlignment(.center)
