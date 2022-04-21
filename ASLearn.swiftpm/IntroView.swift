@@ -63,12 +63,3 @@ struct IntroView: View {
 		.navigationViewStyle(.stack)
 	}
 }
-
-struct IntroView_Previews: PreviewProvider {
-	static var previews: some View {
-		IntroView()
-			.previewDevice("iPad Pro (12.9-inch) (5th generation)")
-		IntroView()
-			.previewDevice("iPad Pro (11-inch) (3rd generation)")
-	}
-}
