@@ -221,8 +221,9 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		let x = removeBackgroundForImage(image: image)
 		tutorialImageView.image = x
 		
-		#warning("handle potential crash")
-		tutorialImageView.image = UIImage(data: x.jpegData(compressionQuality: 1.0)!)
+		if let imageData = x.jpegData(compressionQuality: 1.0) {
+			tutorialImageView.image = UIImage(data: imageData)
+		}
 		
 		let request = VNCoreMLRequest(model: aslClassifier, completionHandler: handleClassification)
 		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
