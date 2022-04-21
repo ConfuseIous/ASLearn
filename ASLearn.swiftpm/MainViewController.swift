@@ -76,7 +76,6 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	
 	// These optionals are force unwrapped because a failure to initialise a model is critical and termination is a suitable response.
 	let deepLabV3 = try! DeepLabV3(configuration: .init()).model
-	//	var aslClassifier: MLModel = try! ASL_Classifier(configuration: .init()).model
 
 	var aslClassifier: VNCoreMLModel = {
 		let config = MLModelConfiguration()
@@ -214,12 +213,10 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		let dataProvider = CGDataProvider(data: dataImage as CFData)
 		let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
-		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UserDefaults.standard.integer(forKey: "selectedHandIndex") == 0 ? .leftMirrored : .left)
-		
-		print("DEBUG: IMAGE SIZE = \(image.size)")
+//		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UserDefaults.standard.integer(forKey: "selectedHandIndex") == 0 ? .left : .leftMirrored)
+		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: .leftMirrored)
 		
 		let x = removeBackgroundForImage(image: image)
-		tutorialImageView.image = x
 		
 		if let imageData = x.jpegData(compressionQuality: 1.0) {
 			tutorialImageView.image = UIImage(data: imageData)
@@ -239,22 +236,25 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		let resizedImage = image.resized(to: CGSize(width: 513, height: 513), scale: 1)
 		let pixelBuffer = resizedImage.pixelBuffer(width: Int(513), height: Int(513))
+		
 		let outputPredictionImage = try? deepLabV3.prediction(from: DeepLabV3Input(image: pixelBuffer!))
+		
 		let outputImage = DeepLabV3Output(features: outputPredictionImage!).semanticPredictions.image(min: 0, max: 1, axes: (0, 0, 1))
 		let outputCIImage = CIImage(image: outputImage!)!
+		
 		let maskImage = outputCIImage.removeWhitePixels()
 		
 		let resizedCIImage = CIImage(image: resizedImage)
+		
 		let compositedImage = resizedCIImage!.composite(with: maskImage!)
-		let finalImage = UIImage(ciImage: compositedImage!)
-			.resized(to: originalSize)
+		
+		let finalImage = UIImage(ciImage: compositedImage!).resized(to: originalSize)
 		
 		return finalImage
 	}
 	
 	func handleClassification(request: VNRequest, error: Error?) {
-		guard let observations = request.results as? [VNClassificationObservation] else { return }
-		guard let best = observations.first else { return}
+		guard let observations = request.results as? [VNClassificationObservation], let best = observations.first else { return }
 		
 		DispatchQueue.main.async {
 			print("DEBUG: Classified as \(best.identifier) with a confidence of \(best.confidence)")
@@ -401,5 +401,4 @@ extension CIImage {
 		color.getHue(nil, saturation: nil, brightness: &brightness, alpha: nil)
 		return brightness
 	}
-	
 }

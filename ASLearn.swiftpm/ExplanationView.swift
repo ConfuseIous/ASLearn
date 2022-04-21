@@ -50,7 +50,7 @@ struct ExplanationView: View {
 					.padding()
 					.padding(.bottom, 50)
 					.fixedSize(horizontal: false, vertical: true)
-				Text("NOTE: Machine Learning is not perfect, even with months of work.\nI've only had 10 days to train this image classifier and it may occasionally guess incorrectly. Lighting conditions and your background can affect prediction accuracy.")
+				Text("NOTE: Machine Learning is not perfect, even with months of work.\nI've only had 10 days to train this image classifier and it may occasionally guess incorrectly. Lighting conditions and your background can affect prediction accuracy.\n\nPlease be patient with ASLearn!")
 					.foregroundColor(.secondary)
 					.multilineTextAlignment(.center)
 					.font(.system(size: 20))
