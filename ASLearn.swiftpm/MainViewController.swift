@@ -102,9 +102,6 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	var captureSession = AVCaptureSession()
 	var previewLayer : AVCaptureVideoPreviewLayer!
 	
-	let alphabets = ["H", "E", "L", "L", "O", "W", "O", "R", "L", "D"]
-	var currentAlphabetIndex = 0
-	
 	// This optional is force unwrapped because a failure to initialise the model is critical and termination is a suitable response.
 	let deepLabV3 = try! DeepLabV3(configuration: .init()).model
 	
@@ -170,7 +167,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 			cameraView.widthAnchor.constraint(equalToConstant: 300),
 			cameraView.heightAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: 1.0),
 			cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			cameraView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20)
+			cameraView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
 		])
 		
 		// Set up UIPanGestureRecognizer
@@ -193,9 +190,9 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	}
 	
 	func updateGestureAndAlphabet() {
-		instructionsLabel.text = "The image on the top left represents the letter \(alphabets[currentAlphabetIndex]). The image beside it shows the corresponding gesture."
-		gestureImageView.image = UIImage(named: alphabets[currentAlphabetIndex] + "-GESTURE")
-		alphabetImageView.image = UIImage(named: alphabets[currentAlphabetIndex])
+		instructionsLabel.text = "The image on the top right represents the American Sign Language gesture for the letter \(sharedViewModel.alphabets[sharedViewModel.currentAlphabetIndex]). Make sure only your hand is visible in frame."
+		gestureImageView.image = UIImage(named: sharedViewModel.alphabets[sharedViewModel.currentAlphabetIndex] + "-GESTURE")
+		alphabetImageView.image = UIImage(named: sharedViewModel.alphabets[sharedViewModel.currentAlphabetIndex])
 	}
 	
 	func updateInfoText(error: String? = nil) {
@@ -273,8 +270,6 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 			image = UIImage(data: imageData)!
 		}
 		
-		alphabetImageView.image = image
-		
 		let request = VNCoreMLRequest(model: aslClassifier, completionHandler: handleClassification)
 		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
 		do {
@@ -310,7 +305,6 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		guard let observations = request.results as? [VNClassificationObservation], let best = observations.first else { return }
 		
 		DispatchQueue.main.async {
-			self.sharedViewModel.actualLetter = self.alphabets[self.currentAlphabetIndex]
 			self.sharedViewModel.predictedLetter = best.identifier
 			self.sharedViewModel.confidence = best.confidence
 			self.sharedViewModel.shouldShowMainView.toggle()
