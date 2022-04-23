@@ -311,6 +311,9 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		guard let observations = request.results as? [VNClassificationObservation], let best = observations.first else { return }
 		
 		DispatchQueue.main.async {
+			self.sharedViewModel.prediction = best.identifier
+			self.sharedViewModel.confidence = best.confidence
+			
 			print("DEBUG: Classified as \(best.identifier) with a confidence of \(best.confidence)")
 		}
 	}
