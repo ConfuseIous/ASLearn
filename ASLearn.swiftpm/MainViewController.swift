@@ -102,7 +102,8 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	var captureSession = AVCaptureSession()
 	var previewLayer : AVCaptureVideoPreviewLayer!
 	
-	var currentIndex = 0
+	let alphabets = ["H", "E", "L", "L", "O", "W", "O", "R", "L", "D"]
+	var currentAlphabetIndex = 0
 	
 	// This optional is force unwrapped because a failure to initialise the model is critical and termination is a suitable response.
 	let deepLabV3 = try! DeepLabV3(configuration: .init()).model
@@ -192,11 +193,9 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	}
 	
 	func updateGestureAndAlphabet() {
-		let alphabets = ["H", "E", "L", "L", "O", "W", "O", "R", "L", "D"]
-		
-		instructionsLabel.text = "The image on the top left represents the letter \(alphabets[currentIndex]). The image beside it shows the corresponding gesture."
-		gestureImageView.image = UIImage(named: alphabets[currentIndex] + "-GESTURE")
-		alphabetImageView.image = UIImage(named: alphabets[currentIndex])
+		instructionsLabel.text = "The image on the top left represents the letter \(alphabets[currentAlphabetIndex]). The image beside it shows the corresponding gesture."
+		gestureImageView.image = UIImage(named: alphabets[currentAlphabetIndex] + "-GESTURE")
+		alphabetImageView.image = UIImage(named: alphabets[currentAlphabetIndex])
 	}
 	
 	func updateInfoText(error: String? = nil) {
@@ -311,8 +310,10 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		guard let observations = request.results as? [VNClassificationObservation], let best = observations.first else { return }
 		
 		DispatchQueue.main.async {
-			self.sharedViewModel.prediction = best.identifier
+			self.sharedViewModel.actualLetter = self.alphabets[self.currentAlphabetIndex]
+			self.sharedViewModel.predictedLetter = best.identifier
 			self.sharedViewModel.confidence = best.confidence
+			self.sharedViewModel.shouldShowMainView.toggle()
 			
 			print("DEBUG: Classified as \(best.identifier) with a confidence of \(best.confidence)")
 		}

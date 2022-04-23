@@ -52,7 +52,7 @@ struct IntroView: View {
 					.font(.system(size: 15))
 					.multilineTextAlignment(.center)
 					.padding([.horizontal, .top])
-				Text("Reference: Deafness and hearing loss. (2021). World Health Organisation. Retrieved April 07, 2022, from https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss")
+				Text("Reference: Deafness and hearing loss. (2021). World Health Organisation. Retrieved April 14, 2022, from https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss")
 					.font(.system(size: 15))
 					.multilineTextAlignment(.center)
 					.foregroundColor(.secondary)
