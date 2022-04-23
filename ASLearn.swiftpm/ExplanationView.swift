@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExplanationView: View {
 	
-	@State var shouldMoveToFinalView = false
+	@State var sharedViewModel = SharedViewModel()
 	
 	var body: some View {
 		NavigationView {
@@ -60,7 +60,7 @@ struct ExplanationView: View {
 					.padding()
 					.fixedSize(horizontal: false, vertical: true)
 				Spacer()
-				NavigationLink(destination: MainView(shouldMoveToFinalView: $shouldMoveToFinalView).navigationBarHidden(true).navigationViewStyle(.stack), label: {
+				NavigationLink(destination: MainView(sharedViewModel: $sharedViewModel).navigationBarHidden(true).navigationViewStyle(.stack), label: {
 					Image(systemName: "arrow.right.circle.fill")
 						.resizable()
 						.aspectRatio(contentMode: .fit)

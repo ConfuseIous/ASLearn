@@ -10,10 +10,10 @@ import SwiftUI
 import Foundation
 
 struct MainView: UIViewControllerRepresentable {
-	@Binding var shouldMoveToFinalView: Bool
+	@Binding var sharedViewModel: SharedViewModel
 	
 	func makeUIViewController(context: Context) -> MainViewController {
-		let mainViewController = MainViewController()
+		let mainViewController = MainViewController(sharedViewModel: sharedViewModel)
 		return mainViewController
 	}
 	

@@ -5,13 +5,25 @@
 //  Created by Karandeep Singh on 12/4/22.
 //
 
-import UIKit
 import ARKit
+import UIKit
 import CoreML
 import Vision
+import Combine
 import SwiftUI
 
 final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate {
+	
+	var sharedViewModel: SharedViewModel
+	
+	init(sharedViewModel: SharedViewModel) {
+		self.sharedViewModel = sharedViewModel
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 	
 	var panGesture = UIPanGestureRecognizer()
 	
