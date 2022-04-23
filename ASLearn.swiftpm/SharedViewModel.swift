@@ -8,5 +8,6 @@
 import Foundation
 
 class SharedViewModel: ObservableObject {
+	@Published var shouldShowMainView = false
 	@Published var shouldNavigateToFinalView = false
 }

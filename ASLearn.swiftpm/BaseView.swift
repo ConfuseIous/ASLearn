@@ -1,5 +1,5 @@
 //
-//  ExplanationView.swift
+//  BaseView.swift
 //  ASLearn
 //
 //  Created by Karandeep Singh on 21/4/22.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ExplanationView: View {
+struct BaseView: View {
 	
-	@State var sharedViewModel = SharedViewModel()
+	@ObservedObject var sharedViewModel = SharedViewModel()
 	
 	var body: some View {
 		NavigationView {
@@ -60,14 +60,19 @@ struct ExplanationView: View {
 					.padding()
 					.fixedSize(horizontal: false, vertical: true)
 				Spacer()
-				NavigationLink(destination: MainView(sharedViewModel: $sharedViewModel).navigationBarHidden(true).navigationViewStyle(.stack), label: {
+				Button {
+					sharedViewModel.shouldShowMainView.toggle()
+					print(sharedViewModel.shouldShowMainView)
+				} label: {
 					Image(systemName: "arrow.right.circle.fill")
 						.resizable()
 						.aspectRatio(contentMode: .fit)
 						.frame(width: 50)
 						.foregroundColor(.blue)
-				})
+				}
 				Spacer()
+			}.sheet(isPresented: $sharedViewModel.shouldShowMainView) {
+				MainView(sharedViewModel: sharedViewModel)
 			}
 		}
 	}

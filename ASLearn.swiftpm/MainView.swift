@@ -10,7 +10,7 @@ import SwiftUI
 import Foundation
 
 struct MainView: UIViewControllerRepresentable {
-	@Binding var sharedViewModel: SharedViewModel
+	@ObservedObject var sharedViewModel: SharedViewModel
 	
 	func makeUIViewController(context: Context) -> MainViewController {
 		let mainViewController = MainViewController(sharedViewModel: sharedViewModel)
@@ -22,5 +22,4 @@ struct MainView: UIViewControllerRepresentable {
 	}
 	
 	typealias UIViewControllerType = MainViewController
-	
 }
