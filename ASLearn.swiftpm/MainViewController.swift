@@ -31,6 +31,14 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		return gestureImageView
 	}()
 	
+	let instructionsLabel: UILabel = {
+		let instructionsLabel = UILabel()
+		instructionsLabel.textAlignment = .center
+		instructionsLabel.numberOfLines = 2
+		instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
+		return instructionsLabel
+	}()
+	
 	let infoLabel: UILabel = {
 		let infoLabel = UILabel()
 		infoLabel.textAlignment = .center
@@ -69,20 +77,22 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		return cameraView
 	}()
 	
-	let analyseButton: UIButton = {
-		let analyseButton = UIButton()
-		analyseButton.backgroundColor = .systemBlue
-		analyseButton.setTitle("Analyse Gesture", for: .normal)
-		analyseButton.layer.cornerRadius = 10
-		analyseButton.translatesAutoresizingMaskIntoConstraints = false
-		return analyseButton
+	let tryitYourselfButton: UIButton = {
+		let tryitYourselfButton = UIButton()
+		tryitYourselfButton.backgroundColor = .systemBlue
+		tryitYourselfButton.setTitle("Try it yourself!", for: .normal)
+		tryitYourselfButton.layer.cornerRadius = 10
+		tryitYourselfButton.translatesAutoresizingMaskIntoConstraints = false
+		return tryitYourselfButton
 	}()
 	
 	var cameraOutput: AVCapturePhotoOutput!
 	var captureSession = AVCaptureSession()
 	var previewLayer : AVCaptureVideoPreviewLayer!
 	
-	// These optionals are force unwrapped because a failure to initialise a model is critical and termination is a suitable response.
+	var currentIndex = 0
+	
+	// This optional is force unwrapped because a failure to initialise the model is critical and termination is a suitable response.
 	let deepLabV3 = try! DeepLabV3(configuration: .init()).model
 	
 	var aslClassifier: VNCoreMLModel = {
@@ -97,14 +107,15 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		analyseButton.addTarget(self, action: #selector(analyseButtonPressed), for: .touchUpInside)
+		tryitYourselfButton.addTarget(self, action: #selector(tryitYourselfButtonPressed), for: .touchUpInside)
 		
 		// Set up Views
 		view.addSubview(alphabetImageView)
 		view.addSubview(gestureImageView)
+		view.addSubview(instructionsLabel)
 		view.addSubview(infoLabel)
 		view.addSubview(cameraView)
-		view.addSubview(analyseButton)
+		view.addSubview(tryitYourselfButton)
 		view.addSubview(cameraView)
 		
 		countdownView.addSubview(countdownLabel)
@@ -112,18 +123,22 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		// Set up Constraints
 		NSLayoutConstraint.activate([
-			alphabetImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width/2),
-			alphabetImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			alphabetImageView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width / 2) - 30),
+			alphabetImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 			alphabetImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
 			alphabetImageView.heightAnchor.constraint(equalToConstant: 400),
 			
-			alphabetImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width/2),
-			gestureImageView.leadingAnchor.constraint(equalTo: alphabetImageView.trailingAnchor),
-			gestureImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			alphabetImageView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width / 2) - 30 ),
+			gestureImageView.leadingAnchor.constraint(equalTo: alphabetImageView.trailingAnchor, constant: 10),
+			gestureImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 			gestureImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
 			gestureImageView.heightAnchor.constraint(equalToConstant: 400),
 			
-			infoLabel.topAnchor.constraint(equalTo: alphabetImageView.bottomAnchor, constant: 20),
+			instructionsLabel.topAnchor.constraint(equalTo: alphabetImageView.bottomAnchor, constant: 20),
+			instructionsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+			instructionsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+			
+			infoLabel.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor, constant: 20),
 			infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 			infoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 			
@@ -135,9 +150,9 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 			countdownLabel.centerYAnchor.constraint(equalTo: countdownView.centerYAnchor),
 			countdownLabel.centerXAnchor.constraint(equalTo: countdownView.centerXAnchor),
 			
-			analyseButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			analyseButton.widthAnchor.constraint(equalToConstant: 200),
-			analyseButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 40),
+			tryitYourselfButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			tryitYourselfButton.widthAnchor.constraint(equalToConstant: 200),
+			tryitYourselfButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 40),
 			
 			cameraView.widthAnchor.constraint(equalToConstant: 300),
 			cameraView.heightAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: 1.0),
@@ -155,6 +170,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		startCameraAndSession()
 		
 		updateInfoText()
+		updateGestureAndAlphabet()
 	}
 	
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -163,11 +179,19 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		updateInfoText()
 	}
 	
+	func updateGestureAndAlphabet() {
+		let alphabets = ["H", "E", "L", "L", "O", "W", "O", "R", "L", "D"]
+		
+		instructionsLabel.text = "The image on the top left represents the letter \(alphabets[currentIndex]). The image beside it shows the corresponding gesture."
+		gestureImageView.image = UIImage(named: alphabets[currentIndex] + "-GESTURE")
+		alphabetImageView.image = UIImage(named: alphabets[currentIndex])
+	}
+	
 	func updateInfoText(error: String? = nil) {
 		/* This function conditionally either
 		 Warns the user to use portrait mode
 		 or
-		 Provides instructions
+		 Updates the instruction label
 		 */
 		
 		UIView.animate(withDuration: 0.5, delay: 2.0, options: .curveEaseOut, animations: {
@@ -176,7 +200,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 			if let error = error {
 				self.infoLabel.text = error
 			} else {
-				self.infoLabel.text = self.view.window?.windowScene?.interfaceOrientation != .portrait ? "For an ideal experience, please rotate your device to portrait mode." : "Please try to imitate the gesture indicated in the image above with your right hand and press the \"Analyse Gesture\" button with your left."
+				self.infoLabel.text = self.view.window?.windowScene?.interfaceOrientation != .portrait ? "For an ideal experience, please use ASLearn in portrait mode." : "Please press the \"Try it yourself!\" button and try to imitate the gesture indicated in the image above."
 			}
 			
 			UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
@@ -223,6 +247,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		guard let dataImage = photo.fileDataRepresentation() else {
 			showCameraError(error: .processingError)
+			
 			return
 		}
 		
@@ -240,7 +265,6 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		alphabetImageView.image = image
 		
 		let request = VNCoreMLRequest(model: aslClassifier, completionHandler: handleClassification)
-//		let handler = VNImageRequestHandler(cgImage: jpegImage!.cgImage!)
 		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
 		do {
 			try handler.perform([request])
@@ -280,7 +304,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	}
 	
 	// MARK: - Button Actions
-	@objc func analyseButtonPressed(_ sender: Any) {
+	@objc func tryitYourselfButtonPressed(_ sender: Any) {
 		var remainingSecondsForTimer = 3
 		
 		self.countdownLabel.text = String(3)
@@ -336,25 +360,11 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	}
 	
 	// Handle PanGesture
-	@objc func draggedView(_ sender:UIPanGestureRecognizer){
+	@objc func draggedView(_ sender:UIPanGestureRecognizer) {
 		self.view.bringSubviewToFront(cameraView)
 		let translation = sender.translation(in: self.view)
 		cameraView.center = CGPoint(x: cameraView.center.x + translation.x, y: cameraView.center.y + translation.y)
 		sender.setTranslation(CGPoint.zero, in: self.view)
-	}
-}
-
-extension MainViewController: UIViewControllerRepresentable {
-	
-	public typealias UIViewControllerType = MainViewController
-	
-	func makeUIViewController(context: UIViewControllerRepresentableContext<MainViewController>) -> MainViewController {
-		
-		return MainViewController()
-	}
-	
-	func updateUIViewController(_ uiViewController: MainViewController, context: UIViewControllerRepresentableContext<MainViewController>) {
-		
 	}
 }
 

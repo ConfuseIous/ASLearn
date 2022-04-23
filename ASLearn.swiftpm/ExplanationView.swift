@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ExplanationView: View {
+	
+	@State var shouldMoveToFinalView = false
+	
 	var body: some View {
 		NavigationView {
 			VStack {
@@ -57,7 +60,7 @@ struct ExplanationView: View {
 					.padding()
 					.fixedSize(horizontal: false, vertical: true)
 				Spacer()
-				NavigationLink(destination: MainViewController().navigationBarHidden(true).navigationViewStyle(.stack), label: {
+				NavigationLink(destination: MainView(shouldMoveToFinalView: $shouldMoveToFinalView).navigationBarHidden(true).navigationViewStyle(.stack), label: {
 					Image(systemName: "arrow.right.circle.fill")
 						.resizable()
 						.aspectRatio(contentMode: .fit)
