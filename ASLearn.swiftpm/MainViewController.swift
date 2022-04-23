@@ -15,12 +15,20 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	
 	var panGesture = UIPanGestureRecognizer()
 	
-	let tutorialImageView: UIImageView = {
-		let tutorialImageView = UIImageView()
-		tutorialImageView.contentMode = .scaleAspectFit
-		tutorialImageView.image = UIImage(named: "black")
-		tutorialImageView.translatesAutoresizingMaskIntoConstraints = false
-		return tutorialImageView
+	let alphabetImageView: UIImageView = {
+		let alphabetImageView = UIImageView()
+		alphabetImageView.contentMode = .scaleAspectFit
+		alphabetImageView.image = UIImage(named: "black")
+		alphabetImageView.translatesAutoresizingMaskIntoConstraints = false
+		return alphabetImageView
+	}()
+	
+	let gestureImageView: UIImageView = {
+		let gestureImageView = UIImageView()
+		gestureImageView.contentMode = .scaleAspectFit
+		gestureImageView.image = UIImage(named: "black")
+		gestureImageView.translatesAutoresizingMaskIntoConstraints = false
+		return gestureImageView
 	}()
 	
 	let infoLabel: UILabel = {
@@ -54,9 +62,9 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	let cameraView: UIView = {
 		let cameraView = UIView()
 		cameraView.backgroundColor = .clear
-		//		cameraView.layer.borderColor = UIColor.label.cgColor
-		//		cameraView.layer.borderWidth = 5
-		//		cameraView.layer.cornerRadius = 10
+		cameraView.layer.borderColor = UIColor.label.cgColor
+		cameraView.layer.borderWidth = 5
+		cameraView.layer.cornerRadius = 10
 		cameraView.translatesAutoresizingMaskIntoConstraints = false
 		return cameraView
 	}()
@@ -76,7 +84,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	
 	// These optionals are force unwrapped because a failure to initialise a model is critical and termination is a suitable response.
 	let deepLabV3 = try! DeepLabV3(configuration: .init()).model
-
+	
 	var aslClassifier: VNCoreMLModel = {
 		let config = MLModelConfiguration()
 		config.computeUnits = .cpuOnly
@@ -92,7 +100,8 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		analyseButton.addTarget(self, action: #selector(analyseButtonPressed), for: .touchUpInside)
 		
 		// Set up Views
-		view.addSubview(tutorialImageView)
+		view.addSubview(alphabetImageView)
+		view.addSubview(gestureImageView)
 		view.addSubview(infoLabel)
 		view.addSubview(cameraView)
 		view.addSubview(analyseButton)
@@ -103,12 +112,18 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		// Set up Constraints
 		NSLayoutConstraint.activate([
-			tutorialImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			tutorialImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			tutorialImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-			tutorialImageView.heightAnchor.constraint(equalToConstant: 400),
+			alphabetImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width/2),
+			alphabetImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			alphabetImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+			alphabetImageView.heightAnchor.constraint(equalToConstant: 400),
 			
-			infoLabel.topAnchor.constraint(equalTo: tutorialImageView.bottomAnchor, constant: 20),
+			alphabetImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width/2),
+			gestureImageView.leadingAnchor.constraint(equalTo: alphabetImageView.trailingAnchor),
+			gestureImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			gestureImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+			gestureImageView.heightAnchor.constraint(equalToConstant: 400),
+			
+			infoLabel.topAnchor.constraint(equalTo: alphabetImageView.bottomAnchor, constant: 20),
 			infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 			infoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 			
@@ -205,7 +220,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 			showCameraError(error: .processingError)
 			return
 		}
-			
+		
 		guard let dataImage = photo.fileDataRepresentation() else {
 			showCameraError(error: .processingError)
 			return
@@ -213,16 +228,19 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		let dataProvider = CGDataProvider(data: dataImage as CFData)
 		let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
-//		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UserDefaults.standard.integer(forKey: "selectedHandIndex") == 0 ? .left : .leftMirrored)
-		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: .leftMirrored)
+		//		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UserDefaults.standard.integer(forKey: "selectedHandIndex") == 0 ? .left : .leftMirrored)
+		var image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: .leftMirrored)
 		
 		let x = removeBackgroundForImage(image: image)
 		
 		if let imageData = x.jpegData(compressionQuality: 1.0) {
-			tutorialImageView.image = UIImage(data: imageData)
+			image = UIImage(data: imageData)!
 		}
 		
+		alphabetImageView.image = image
+		
 		let request = VNCoreMLRequest(model: aslClassifier, completionHandler: handleClassification)
+//		let handler = VNImageRequestHandler(cgImage: jpegImage!.cgImage!)
 		let handler = VNImageRequestHandler(cgImage: image.cgImage!)
 		do {
 			try handler.perform([request])
