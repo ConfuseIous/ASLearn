@@ -13,6 +13,7 @@ struct IncorrectView: View {
 	
 	var body: some View {
 		VStack {
+			BaseViewTwo(isMainView: false, sharedViewModel: sharedViewModel)
 			Image(systemName: "exclamationmark.triangle.fill")
 				.resizable()
 				.foregroundColor(.yellow)
@@ -25,7 +26,7 @@ struct IncorrectView: View {
 			Text("That doesn't seem to have worked.")
 				.font(.system(size: 25))
 				.padding()
-			Text("ASLearn is \(String(format:"%.1f", sharedViewModel.confidence * 100))% sure that your gesture represents the letter \(sharedViewModel.predictedLetter).")
+			Text("ASLearn thinks that your gesture may represent the letter \(sharedViewModel.mostConfidentLetter).")
 				.foregroundColor(.secondary)
 				.font(.system(size: 25))
 				.padding()
