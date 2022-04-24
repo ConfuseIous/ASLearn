@@ -350,9 +350,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 					self.cameraOutput.capturePhoto(with: settings, delegate: self)
 				}
 				
-				UIView.animate(withDuration: 0.5, animations: { [weak self] in
-					self?.countdownView.alpha = 0.0
-				})
+				self.countdownLabel.text = "1 Sec..."
 			}
 		}
 	}
