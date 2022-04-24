@@ -40,7 +40,7 @@ struct BaseView: View {
 				})
 			})
 			.fullScreenCover(isPresented: $sharedViewModel.shouldShowMainView, onDismiss: {
-				viewShown = sharedViewModel.alphabets[sharedViewModel.currentAlphabetIndex] == sharedViewModel.predictedLetter ? 2 : 3
+				viewShown = sharedViewModel.isLetterCorrect ? 2 : 3
 			}, content: {
 				MainView(sharedViewModel: sharedViewModel).interactiveDismissDisabled()
 			})
@@ -67,7 +67,7 @@ struct BaseViewOne: View {
 				.padding()
 				.padding(.bottom, 50)
 				.fixedSize(horizontal: false, vertical: true)
-			Text("When learning a new programming language, it's typical to start with displaying the words \"Hello World\"")
+			Text("When learning a new programming language, it's typical to start with displaying the words \"Hello World\".")
 				.multilineTextAlignment(.center)
 				.font(.system(size: 25))
 				.padding()
@@ -95,7 +95,8 @@ struct BaseViewTwo: View {
 		"Let's try O again.",
 		"Great, on to R.",
 		"Almost there! L.",
-		"Final letter, D."
+		"Final letter, D.",
+		"And we're done!"
 	]
 	
 	var body: some View {
@@ -133,12 +134,14 @@ struct BaseViewTwo: View {
 					.foregroundColor(sharedViewModel.currentAlphabetIndex == 9 ? .blue : .secondary)
 					.font(.system(size: 30))
 			}
-			Text(instructions[sharedViewModel.currentAlphabetIndex])
+			
+			Text(instructions[(isMainView || !sharedViewModel.isLetterCorrect) ? sharedViewModel.currentAlphabetIndex : sharedViewModel.currentAlphabetIndex + 1])
 				.multilineTextAlignment(.center)
 				.font(.system(size: 25))
 				.padding()
 				.fixedSize(horizontal: false, vertical: true)
-		}.onAppear(perform: {
+		}
+		.onAppear(perform: {
 			if isMainView {
 				DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
 					withAnimation {
@@ -147,5 +150,8 @@ struct BaseViewTwo: View {
 				})
 			}
 		})
+		.onReceive(NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification, object: nil)) { notification in
+			print(notification)
+		}
 	}
 }

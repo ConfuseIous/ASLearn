@@ -9,8 +9,6 @@ import ARKit
 import UIKit
 import CoreML
 import Vision
-import Combine
-import SwiftUI
 
 final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 	
@@ -260,7 +258,6 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		let dataProvider = CGDataProvider(data: dataImage as CFData)
 		let cgImageRef: CGImage! = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
-		//		let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UserDefaults.standard.integer(forKey: "selectedHandIndex") == 0 ? .left : .leftMirrored)
 		var image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: .leftMirrored)
 		
 		let x = removeBackgroundForImage(image: image)
@@ -301,14 +298,21 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	}
 	
 	func handleClassification(request: VNRequest, error: Error?) {
-		guard let observations = request.results as? [VNClassificationObservation], let best = observations.first else { return }
+		guard let observations = request.results as? [VNClassificationObservation] else { return }
 		
-		DispatchQueue.main.async {
-			self.sharedViewModel.predictedLetter = best.identifier
-			self.sharedViewModel.confidence = best.confidence
-			self.sharedViewModel.shouldShowMainView.toggle()
+		var predictedLetters: [[String : Float]] = []
+		
+		DispatchQueue.main.async { [self] in
+			for observation in observations {
+				print("Prediction: \(observation.identifier), Confidence: \(observation.confidence * 100)")
+				predictedLetters.append([observation.identifier : observation.confidence])
+			}
+			print("\n")
+			sharedViewModel.mostConfidentLetter = observations.first?.identifier ?? ""
 			
-			print("DEBUG: Classified as \(best.identifier) with a confidence of \(best.confidence)")
+			sharedViewModel.isLetterCorrect = ((predictedLetters.first(where: {$0.keys.first == sharedViewModel.alphabets[sharedViewModel.currentAlphabetIndex]})?.values.first ?? 0) * 100) >= 30
+			
+			sharedViewModel.shouldShowMainView.toggle()
 		}
 	}
 	
@@ -344,9 +348,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 					self.cameraOutput.capturePhoto(with: settings, delegate: self)
 				}
 				
-				UIView.animate(withDuration: 0.5, animations: { [weak self] in
-					self?.countdownView.alpha = 0.0
-				})
+				self.countdownLabel.text = "1 Sec..."
 			}
 		}
 	}

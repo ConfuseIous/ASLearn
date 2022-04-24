@@ -15,6 +15,8 @@ class SharedViewModel: ObservableObject {
 	@Published var shouldMoveToCompletionView = false
 	
 	@Published var currentAlphabetIndex = 0
-	@Published var predictedLetter = ""
-	@Published var confidence: Float = 0
+	
+	@Published var isLetterCorrect = false
+	@Published var mostConfidentLetter = ""
+	
 }

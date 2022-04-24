@@ -17,7 +17,7 @@ struct CompletionPage: View {
 				.padding(.vertical)
 				.fixedSize(horizontal: false, vertical: true)
 			Text("ASLearn's ML Model was built in just 10 days with a CoreML Image Classifier - not a custom solution. And the dataset used is still not perfect either, despite my best efforts to pre-process it.")
-				.multilineTextAlignment(.leading)
+				.multilineTextAlignment(.center)
 				.font(.system(size: 20))
 				.padding()
 				.fixedSize(horizontal: false, vertical: true)
