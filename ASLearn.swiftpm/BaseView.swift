@@ -20,9 +20,9 @@ struct BaseView: View {
 				case 0:
 					BaseViewOne(sharedViewModel: sharedViewModel)
 				case 1:
-					BaseViewTwo(sharedViewModel: sharedViewModel)
+					BaseViewTwo(isMainView: true, sharedViewModel: sharedViewModel)
 				case 2:
-					SuccessView(sharedViewModel: sharedViewModel)
+					SuccessView(sharedViewModel: sharedViewModel, viewShown: $viewShown)
 				case 3:
 					IncorrectView(sharedViewModel: sharedViewModel, viewShown: $viewShown)
 				case 4:
@@ -40,9 +40,6 @@ struct BaseView: View {
 				})
 			})
 			.fullScreenCover(isPresented: $sharedViewModel.shouldShowMainView, onDismiss: {
-				if sharedViewModel.currentAlphabetIndex == sharedViewModel.alphabets.count - 1 && sharedViewModel.alphabets[sharedViewModel.currentAlphabetIndex] == sharedViewModel.predictedLetter {
-					viewShown = 4
-				}
 				viewShown = sharedViewModel.alphabets[sharedViewModel.currentAlphabetIndex] == sharedViewModel.predictedLetter ? 2 : 3
 			}, content: {
 				MainView(sharedViewModel: sharedViewModel).interactiveDismissDisabled()
@@ -84,9 +81,9 @@ struct BaseViewOne: View {
 }
 
 struct BaseViewTwo: View {
-	@ObservedObject var sharedViewModel: SharedViewModel
+	var isMainView: Bool
 	
-	@State var currentInstruction = 0
+	@ObservedObject var sharedViewModel: SharedViewModel
 	
 	var instructions = [
 		"Let's start with the letter H!",
@@ -94,120 +91,61 @@ struct BaseViewTwo: View {
 		"Third letter, L.",
 		"It's L again!",
 		"Last one, O.",
+		"Next word, first letter. W.",
+		"Let's try O again.",
+		"Great, on to R.",
+		"Almost there! L.",
+		"Final letter, D."
 	]
 	
 	var body: some View {
 		VStack {
-			Text(instructions[currentInstruction])
+			HStack {
+				Text("H")
+					.foregroundColor(sharedViewModel.currentAlphabetIndex == 0 ? .blue : .secondary)
+					.font(.system(size: 30))
+				Text("E")
+					.foregroundColor(sharedViewModel.currentAlphabetIndex == 1 ? .blue : .secondary)
+					.font(.system(size: 30))
+				Text("L")
+					.foregroundColor(sharedViewModel.currentAlphabetIndex == 2 ? .blue : .secondary)
+					.font(.system(size: 30))
+				Text("L")
+					.foregroundColor(sharedViewModel.currentAlphabetIndex == 3 ? .blue : .secondary)
+					.font(.system(size: 30))
+				Text("O")
+					.foregroundColor(sharedViewModel.currentAlphabetIndex == 4 ? .blue : .secondary)
+					.font(.system(size: 30))
+					.padding(.trailing)
+				Text("W")
+					.foregroundColor(sharedViewModel.currentAlphabetIndex == 5 ? .blue : .secondary)
+					.font(.system(size: 30))
+				Text("O")
+					.foregroundColor(sharedViewModel.currentAlphabetIndex == 6 ? .blue : .secondary)
+					.font(.system(size: 30))
+				Text("R")
+					.foregroundColor(sharedViewModel.currentAlphabetIndex == 7 ? .blue : .secondary)
+					.font(.system(size: 30))
+				Text("L")
+					.foregroundColor(sharedViewModel.currentAlphabetIndex == 8 ? .blue : .secondary)
+					.font(.system(size: 30))
+				Text("D")
+					.foregroundColor(sharedViewModel.currentAlphabetIndex == 9 ? .blue : .secondary)
+					.font(.system(size: 30))
+			}
+			Text(instructions[sharedViewModel.currentAlphabetIndex])
 				.multilineTextAlignment(.center)
 				.font(.system(size: 25))
 				.padding()
 				.fixedSize(horizontal: false, vertical: true)
-			Spacer()
-			Button {
-				if sharedViewModel.currentAlphabetIndex != sharedViewModel.alphabets.count - 1 {
-					sharedViewModel.shouldShowMainView.toggle()
-				}
-			} label: {
-				Image(systemName: "checkmark.circle.fill")
-					.resizable()
-					.aspectRatio(contentMode: .fit)
-					.frame(width: 50)
-					.foregroundColor(.blue)
-			}
-			Spacer()
-		}
-	}
-}
-
-struct SuccessView: View {
-	@ObservedObject var sharedViewModel: SharedViewModel
-	
-	var body: some View {
-		VStack {
-			Image(systemName: "hand.thumbsup.circle")
-				.resizable()
-				.frame(width: 100, height: 100)
-				.padding()
-				.padding(.bottom, 50)
-			Text("Great Job!")
-				.font(.system(size: 30))
-				.padding()
-			Text("You got it right!")
-				.font(.system(size: 25))
-				.padding()
-			Spacer()
-			Button(action: {
-				if sharedViewModel.currentAlphabetIndex != sharedViewModel.alphabets.count - 1 {
-					sharedViewModel.currentAlphabetIndex += 1
-					sharedViewModel.shouldShowMainView.toggle()
-				}
-			}, label: {
-				Text("Continue")
-					.padding()
-					.foregroundColor(.white)
-					.background(Color.blue)
-					.cornerRadius(10)
-			}).buttonStyle(DefaultButtonStyle())
-			Spacer()
-		}
-	}
-}
-
-struct IncorrectView: View {
-	@ObservedObject var sharedViewModel: SharedViewModel
-	@Binding var viewShown: Int
-	
-	var body: some View {
-		VStack {
-			Image(systemName: "exclamationmark.triangle.fill")
-				.resizable()
-				.foregroundColor(.yellow)
-				.frame(width: 100, height: 100)
-				.padding()
-				.padding(.bottom, 50)
-			Text("Oops!")
-				.font(.system(size: 30))
-				.padding()
-			Text("That doesn't seem to have worked.")
-				.font(.system(size: 25))
-				.padding()
-			Text("ASLearn is \(String(format:"%.1f", sharedViewModel.confidence * 100))% sure that your gesture represents the letter \(sharedViewModel.predictedLetter).")
-				.foregroundColor(.secondary)
-				.font(.system(size: 25))
-				.padding()
-			HStack {
-				Button(action: {
-					sharedViewModel.shouldShowMainView.toggle()
-				}, label: {
-					Text("Try Again")
-						.frame(width: 100)
-						.padding()
-						.foregroundColor(.white)
-						.background(Color.blue)
-						.cornerRadius(10)
-				}).buttonStyle(DefaultButtonStyle())
-				Button(action: {
-					if sharedViewModel.currentAlphabetIndex != sharedViewModel.alphabets.count - 1 {
-						sharedViewModel.currentAlphabetIndex += 1
+		}.onAppear(perform: {
+			if isMainView {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+					withAnimation {
 						sharedViewModel.shouldShowMainView.toggle()
 					}
-				}, label: {
-					Text("Skip")
-						.frame(width: 100)
-						.padding()
-						.foregroundColor(.black)
-						.background(Color.yellow)
-						.cornerRadius(10)
-				}).buttonStyle(DefaultButtonStyle())
+				})
 			}
-			.padding()
-			.padding(.bottom, 50)
-			Text("Sometimes, you may have the right gesture and the guess is inaccurate.\n\nIf this happens frequently, you may want to move somewhere with better lighting and an even background.\n\nMake sure only your hand is visible in frame.\n\nThe accuracy of these guesses will go up over time as I tune and enhance ASLearn further!")
-				.font(.system(size: 16))
-				.multilineTextAlignment(.center)
-				.foregroundColor(.secondary)
-			Spacer()
-		}
+		})
 	}
 }

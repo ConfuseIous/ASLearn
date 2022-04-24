@@ -107,7 +107,6 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	
 	var aslClassifier: VNCoreMLModel = {
 		let config = MLModelConfiguration()
-		config.computeUnits = .cpuOnly
 		
 		let aslClassifier = try! VNCoreMLModel(for: ASL(configuration: config).model)
 		
