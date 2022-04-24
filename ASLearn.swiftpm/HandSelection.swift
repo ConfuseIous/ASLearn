@@ -35,39 +35,33 @@ struct HandSelectionView: View {
 					.padding()
 					.fixedSize(horizontal: false, vertical: true)
 				HStack {
-					ZStack(alignment: .center) {
-						RoundedRectangle(cornerRadius: 15)
-							.background(selectedHandIndex == 0 ? Color.blue : Color.gray)
-							.opacity(0.6)
+					Button(action: {
+						selectedHandIndex = 0
+					}) {
+						Text("Left")
+							.padding(.top)
+							.foregroundColor(.white)
 							.frame(width: 300, height: 300)
-						Button(action: {
-							selectedHandIndex = 0
-						}) {
-							Text("Left")
-								.padding(.top)
-								.foregroundColor(.white)
-								.frame(width: 300, height: 300)
-						}
-						.frame(width: 300, height: 300)
-						.buttonStyle(.borderless)
-						.padding()
-					}.padding()
-					ZStack(alignment: .center) {
-						RoundedRectangle(cornerRadius: 15)
-							.background(selectedHandIndex == 0 ? Color.gray : Color.blue)
-							.opacity(0.6)
+					}
+					.frame(width: 300, height: 300)
+					.background(selectedHandIndex == 0 ? Color.blue : Color.gray)
+					.opacity(0.6)
+					.cornerRadius(15)
+					.buttonStyle(.borderless)
+					.padding()
+					Button(action: {
+						selectedHandIndex = 1
+					}) {
+						Text("Right")
+							.foregroundColor(.white)
 							.frame(width: 300, height: 300)
-						Button(action: {
-							selectedHandIndex = 1
-						}) {
-							Text("Right")
-								.foregroundColor(.white)
-								.frame(width: 300, height: 300)
-						}
-						.frame(width: 300, height: 300)
-						.buttonStyle(.borderless)
-						.padding()
-					}.padding()
+					}
+					.frame(width: 300, height: 300)
+					.background(selectedHandIndex == 1 ? Color.blue : Color.gray)
+					.opacity(0.6)
+					.cornerRadius(15)
+					.buttonStyle(.borderless)
+					.padding()
 				}
 				Text("You may find it easier to select your dominant hand.")
 					.foregroundColor(.secondary)
@@ -82,8 +76,8 @@ struct HandSelectionView: View {
 						.foregroundColor(.white)
 						.background(Color.blue)
 				})
-				.buttonStyle(PlainButtonStyle())
-				.cornerRadius(10)
+					.buttonStyle(PlainButtonStyle())
+					.cornerRadius(10)
 				Spacer()
 			}
 		}

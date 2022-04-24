@@ -32,12 +32,6 @@ struct OrientationView: View {
 					.font(.system(size: 30))
 					.padding()
 					.fixedSize(horizontal: false, vertical: true)
-				Text("On iPad Pro models with Face ID, ASLearn also includes Augmented Reality for a truly immersive experience.")
-					.multilineTextAlignment(.center)
-					.font(.system(size: 30))
-					.padding()
-					.padding(.bottom, 20)
-					.fixedSize(horizontal: false, vertical: true)
 				(
 					Text("For the best possible experience, please run ASLearn in ")
 					+
@@ -59,7 +53,7 @@ struct OrientationView: View {
 						.foregroundColor(.blue)
 				})
 				Spacer()
-				Text("This feature requires the TrueDepth front camera, which is only available on Face ID supported devices.")
+				Text("ASLearn requires iOS 15 or newer.")
 					.font(.system(size: 15))
 					.multilineTextAlignment(.center)
 					.foregroundColor(.secondary)
