@@ -67,7 +67,7 @@ struct BaseViewOne: View {
 				.padding()
 				.padding(.bottom, 50)
 				.fixedSize(horizontal: false, vertical: true)
-			Text("When learning a new programming language, it's typical to start with displaying the words \"Hello World\"")
+			Text("When learning a new programming language, it's typical to start with displaying the words \"Hello World\".")
 				.multilineTextAlignment(.center)
 				.font(.system(size: 25))
 				.padding()
