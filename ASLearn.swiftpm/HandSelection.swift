@@ -70,7 +70,7 @@ struct HandSelectionView: View {
 					.padding()
 					.padding(.bottom)
 					.fixedSize(horizontal: false, vertical: true)
-				NavigationLink(destination: ExplanationView().navigationBarHidden(true).navigationViewStyle(.stack), label: {
+				NavigationLink(destination: AccuracyView().navigationBarHidden(true).navigationViewStyle(.stack), label: {
 					Text("Save and Go")
 						.padding()
 						.foregroundColor(.white)

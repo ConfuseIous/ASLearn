@@ -9,8 +9,6 @@ import ARKit
 import UIKit
 import CoreML
 import Vision
-import Combine
-import SwiftUI
 
 final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 	
