@@ -348,7 +348,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 					self.cameraOutput.capturePhoto(with: settings, delegate: self)
 				}
 				
-				self.countdownLabel.text = "1 Sec..."
+				self.countdownLabel.text = "Loading"
 			}
 		}
 	}
