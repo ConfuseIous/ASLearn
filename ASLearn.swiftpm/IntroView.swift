@@ -58,8 +58,11 @@ struct IntroView: View {
 					.foregroundColor(.secondary)
 					.padding()
 			}
-		}
-		.navigationBarHidden(true)
-		.navigationViewStyle(.stack)
+		}.onAppear(perform: {
+			
+		})
+			.navigationBarHidden(true)
+			.navigationViewStyle(.stack)
 	}
 }
+
