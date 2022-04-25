@@ -32,7 +32,7 @@ struct IncorrectView: View {
 				.padding()
 			HStack {
 				Button(action: {
-					sharedViewModel.shouldShowMainView.toggle()	 
+					sharedViewModel.shouldShowMainView.toggle()
 				}, label: {
 					Text("Try Again")
 						.frame(width: 100)
@@ -43,10 +43,15 @@ struct IncorrectView: View {
 				}).buttonStyle(DefaultButtonStyle())
 				Button(action: {
 					if sharedViewModel.currentAlphabetIndex != sharedViewModel.alphabets.count - 1 {
-						sharedViewModel.currentAlphabetIndex += 1
 						sharedViewModel.shouldShowMainView.toggle()
+						DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+							// Prevents next letter from being shown prematurely
+							sharedViewModel.currentAlphabetIndex += 1
+						})
 					} else {
-						viewShown = 4
+						withAnimation {
+							viewShown = 4
+						}
 					}
 				}, label: {
 					Text("Skip")
