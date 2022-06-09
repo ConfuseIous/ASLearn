@@ -135,7 +135,7 @@ struct BaseViewTwo: View {
 					.font(.system(size: 30))
 			}
 			
-			Text(instructions[(isMainView || !sharedViewModel.isLetterCorrect) ? sharedViewModel.currentAlphabetIndex : sharedViewModel.currentAlphabetIndex + 1])
+			Text(instructions[(isMainView || !sharedViewModel.isLetterCorrect) ? sharedViewModel.currentAlphabetIndex : (sharedViewModel.currentAlphabetIndex + 1)])
 				.multilineTextAlignment(.center)
 				.font(.system(size: 25))
 				.padding()

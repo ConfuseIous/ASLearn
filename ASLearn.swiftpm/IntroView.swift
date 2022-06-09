@@ -18,10 +18,10 @@ struct IntroView: View {
 					+
 					Text("people will suffer from some degree of hearing loss.")
 				)
-					.multilineTextAlignment(.center)
-					.font(.system(size: 30))
-					.padding()
-					.fixedSize(horizontal: false, vertical: true)
+				.multilineTextAlignment(.center)
+				.font(.system(size: 30))
+				.padding()
+				.fixedSize(horizontal: false, vertical: true)
 				Text("As such, Sign Language is a skill of rapidly increasing importance.")
 					.multilineTextAlignment(.center)
 					.font(.system(size: 30))
@@ -35,10 +35,10 @@ struct IntroView: View {
 					+
 					Text("to teach American Sign Language in a fun and interactive way")
 				)
-					.multilineTextAlignment(.center)
-					.font(.system(size: 30))
-					.padding()
-					.fixedSize(horizontal: false, vertical: true)
+				.multilineTextAlignment(.center)
+				.font(.system(size: 30))
+				.padding()
+				.fixedSize(horizontal: false, vertical: true)
 				Spacer()
 				NavigationLink(destination: OrientationView().navigationBarHidden(true).navigationViewStyle(.stack), label: {
 					Image(systemName: "arrow.right.circle.fill")
@@ -61,8 +61,8 @@ struct IntroView: View {
 		}.onAppear(perform: {
 			
 		})
-			.navigationBarHidden(true)
-			.navigationViewStyle(.stack)
+		.navigationBarHidden(true)
+		.navigationViewStyle(.stack)
 	}
 }
 

@@ -44,10 +44,7 @@ struct IncorrectView: View {
 				Button(action: {
 					if sharedViewModel.currentAlphabetIndex != sharedViewModel.alphabets.count - 1 {
 						sharedViewModel.shouldShowMainView.toggle()
-						DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-							// Prevents next letter from being shown prematurely
-							sharedViewModel.currentAlphabetIndex += 1
-						})
+						sharedViewModel.currentAlphabetIndex += 1
 					} else {
 						withAnimation {
 							viewShown = 4
