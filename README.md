@@ -1,5 +1,7 @@
  # ASLearn 
  
+ ## ASLearn has been accepted by Apple for the 2022 Swift Student Challenge!!!
+ 
  ### ASLearn aims to teach American Sign Language in an interactive manner with the help of Machine Learning.
  ### Please note that this Playground has been designed for, tested on, and must be run on iPad.
  
