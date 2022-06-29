@@ -96,9 +96,21 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		return tryitYourselfButton
 	}()
 	
+	let switchCameraButton: UIButton = {
+		let switchCameraButton = UIButton()
+		switchCameraButton.backgroundColor = .systemBlue
+		switchCameraButton.tintColor = .white
+		switchCameraButton.setImage(UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill"), for: .normal)
+		switchCameraButton.layer.cornerRadius = 10
+		switchCameraButton.translatesAutoresizingMaskIntoConstraints = false
+		return switchCameraButton
+	}()
+	
 	var cameraOutput: AVCapturePhotoOutput!
 	var captureSession = AVCaptureSession()
 	var previewLayer : AVCaptureVideoPreviewLayer!
+	
+	var selectedPosition = AVCaptureDevice.Position.front
 	
 	// This optional is force unwrapped because a failure to initialise the model is critical and termination is a suitable response.
 	let deepLabV3 = try! DeepLabV3(configuration: .init()).model
@@ -115,6 +127,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		super.viewDidLoad()
 		
 		tryitYourselfButton.addTarget(self, action: #selector(tryitYourselfButtonPressed), for: .touchUpInside)
+		switchCameraButton.addTarget(self, action: #selector(switchCameraButtonPressed), for: .touchUpInside)
 		
 		// Set up Views
 		view.addSubview(alphabetImageView)
@@ -123,6 +136,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		view.addSubview(infoLabel)
 		view.addSubview(cameraView)
 		view.addSubview(tryitYourselfButton)
+		view.addSubview(switchCameraButton)
 		view.addSubview(cameraView)
 		
 		countdownView.addSubview(countdownLabel)
@@ -156,6 +170,11 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 			
 			countdownLabel.centerYAnchor.constraint(equalTo: countdownView.centerYAnchor),
 			countdownLabel.centerXAnchor.constraint(equalTo: countdownView.centerXAnchor),
+			
+			switchCameraButton.widthAnchor.constraint(equalToConstant: 50),
+			switchCameraButton.heightAnchor.constraint(equalTo: switchCameraButton.widthAnchor),
+			switchCameraButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+			switchCameraButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 			
 			tryitYourselfButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			tryitYourselfButton.widthAnchor.constraint(equalToConstant: 200),
@@ -220,7 +239,7 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		captureSession.sessionPreset = AVCaptureSession.Preset.photo
 		cameraOutput = AVCapturePhotoOutput()
 		
-		if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front),
+		if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: selectedPosition),
 		   let input = try? AVCaptureDeviceInput(device: device) {
 			if (captureSession.canAddInput(input)) {
 				captureSession.addInput(input)
@@ -317,6 +336,11 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	}
 	
 	// MARK: - Button Actions
+	@objc func switchCameraButtonPressed(_ sender: Any) {
+		selectedPosition = (selectedPosition == .front ? .back : .front)
+		startCameraAndSession()
+	}
+	
 	@objc func tryitYourselfButtonPressed(_ sender: Any) {
 		var remainingSecondsForTimer = 3
 		
