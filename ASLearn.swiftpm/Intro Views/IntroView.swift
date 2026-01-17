@@ -42,12 +42,9 @@ struct IntroView: View {
 				Spacer()
 				NavigationLink(destination: OrientationView().navigationBarHidden(true).navigationViewStyle(.stack), label: {
 					Image(systemName: "arrow.right.circle.fill")
-						.resizable()
-						.aspectRatio(contentMode: .fit)
-						.frame(width: 50)
+						.font(.system(size: 60))
 						.foregroundColor(.blue)
 				})
-				Spacer()
 				Text("Please note that this playground needs to be run on an iPad with camera access.")
 					.font(.system(size: 15))
 					.multilineTextAlignment(.center)

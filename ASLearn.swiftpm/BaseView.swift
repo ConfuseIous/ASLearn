@@ -56,6 +56,7 @@ struct BaseViewOne: View {
 	
 	var body: some View {
 		VStack {
+			Spacer()
 			Image(systemName: "globe")
 				.resizable()
 				.aspectRatio(contentMode: .fit)
@@ -101,6 +102,7 @@ struct BaseViewTwo: View {
 	
 	var body: some View {
 		VStack {
+			Spacer()
 			HStack {
 				Text("H")
 					.foregroundColor(sharedViewModel.currentAlphabetIndex == 0 ? .blue : .secondary)
@@ -134,12 +136,12 @@ struct BaseViewTwo: View {
 					.foregroundColor(sharedViewModel.currentAlphabetIndex == 9 ? .blue : .secondary)
 					.font(.system(size: 30))
 			}
-			
 			Text(instructions[(isMainView || !sharedViewModel.isLetterCorrect) ? sharedViewModel.currentAlphabetIndex : (sharedViewModel.currentAlphabetIndex + 1)])
 				.multilineTextAlignment(.center)
 				.font(.system(size: 25))
 				.padding()
 				.fixedSize(horizontal: false, vertical: true)
+			Spacer()
 		}
 		.onAppear(perform: {
 			if isMainView {

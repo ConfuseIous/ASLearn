@@ -24,87 +24,222 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 	}
 	
 	var panGesture = UIPanGestureRecognizer()
-	
+
 	let alphabetImageView: UIImageView = {
-		let alphabetImageView = UIImageView()
-		alphabetImageView.contentMode = .scaleAspectFit
-		alphabetImageView.image = UIImage(named: "black")
-		alphabetImageView.translatesAutoresizingMaskIntoConstraints = false
-		return alphabetImageView
+		let view = UIImageView()
+		view.contentMode = .scaleAspectFit
+		view.image = UIImage(named: "black")
+		view.layer.cornerRadius = 20
+		view.clipsToBounds = true
+		view.layer.shadowColor = UIColor.black.cgColor
+		view.layer.shadowOpacity = 0.1
+		view.layer.shadowOffset = CGSize(width: 0, height: 4)
+		view.layer.shadowRadius = 12
+		view.backgroundColor = .systemBackground
+		view.translatesAutoresizingMaskIntoConstraints = false
+		return view
 	}()
-	
+
 	let gestureImageView: UIImageView = {
-		let gestureImageView = UIImageView()
-		gestureImageView.contentMode = .scaleAspectFit
-		gestureImageView.image = UIImage(named: "black")
-		gestureImageView.translatesAutoresizingMaskIntoConstraints = false
-		return gestureImageView
+		let view = UIImageView()
+		view.contentMode = .scaleAspectFit
+		view.image = UIImage(named: "black")
+		view.layer.cornerRadius = 20
+		view.clipsToBounds = true
+		view.layer.shadowColor = UIColor.black.cgColor
+		view.layer.shadowOpacity = 0.1
+		view.layer.shadowOffset = CGSize(width: 0, height: 4)
+		view.layer.shadowRadius = 12
+		view.backgroundColor = .systemBackground
+		view.translatesAutoresizingMaskIntoConstraints = false
+		return view
 	}()
-	
+
 	let instructionsLabel: UILabel = {
-		let instructionsLabel = UILabel()
-		instructionsLabel.textAlignment = .center
-		instructionsLabel.numberOfLines = 2
-		instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
-		return instructionsLabel
+		let label = UILabel()
+		label.textAlignment = .center
+		label.numberOfLines = 0
+		label.font = .systemFont(ofSize: 16, weight: .medium)
+		label.textColor = .label
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
 	}()
-	
+
 	let infoLabel: UILabel = {
-		let infoLabel = UILabel()
-		infoLabel.textAlignment = .center
-		infoLabel.numberOfLines = 2
-		infoLabel.text = "You can drag the camera feed around to a more comfortable position if you wish.\n"
-		infoLabel.translatesAutoresizingMaskIntoConstraints = false
-		return infoLabel
+		let label = UILabel()
+		label.textAlignment = .center
+		label.numberOfLines = 0
+		label.text = "You can drag the camera feed around to a more comfortable position if you wish."
+		label.font = .systemFont(ofSize: 14, weight: .regular)
+		label.textColor = .secondaryLabel
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
 	}()
-	
+
 	let countdownView: UIView = {
-		let countdownView = UIView()
-		countdownView.backgroundColor = .gray.withAlphaComponent(0.7)
-		countdownView.layer.cornerRadius = 10
-		countdownView.alpha = 0
-		countdownView.translatesAutoresizingMaskIntoConstraints = false
-		return countdownView
+		let view = UIView()
+		view.backgroundColor = UIColor.black.withAlphaComponent(0.85)
+		view.layer.cornerRadius = 16
+		view.alpha = 0
+		view.translatesAutoresizingMaskIntoConstraints = false
+		return view
 	}()
-	
+
 	let countdownLabel: UILabel = {
-		let countdownLabel = UILabel()
-		countdownLabel.textAlignment = .center
-		countdownLabel.numberOfLines = 1
-		countdownLabel.text = "3"
-		countdownLabel.font = .systemFont(ofSize: 25)
-		countdownLabel.translatesAutoresizingMaskIntoConstraints = false
-		return countdownLabel
+		let label = UILabel()
+		label.textAlignment = .center
+		label.numberOfLines = 1
+		label.text = "3"
+		label.font = .systemFont(ofSize: 48, weight: .semibold)
+		label.textColor = .white
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
 	}()
-	
+
+	let loadingSpinner: UIActivityIndicatorView = {
+		let spinner = UIActivityIndicatorView(style: .large)
+		spinner.color = .white
+		spinner.hidesWhenStopped = true
+		spinner.translatesAutoresizingMaskIntoConstraints = false
+		return spinner
+	}()
+
 	let cameraView: UIView = {
-		let cameraView = UIView()
-		cameraView.backgroundColor = .clear
-		cameraView.layer.borderColor = UIColor.label.cgColor
-		cameraView.layer.borderWidth = 5
-		cameraView.layer.cornerRadius = 10
-		cameraView.translatesAutoresizingMaskIntoConstraints = false
-		return cameraView
+		let view = UIView()
+		view.backgroundColor = .systemGray6
+		view.layer.cornerRadius = 20
+		view.clipsToBounds = true
+		view.translatesAutoresizingMaskIntoConstraints = false
+		return view
 	}()
-	
+
 	let tryitYourselfButton: UIButton = {
-		let tryitYourselfButton = UIButton()
-		tryitYourselfButton.backgroundColor = .systemBlue
-		tryitYourselfButton.setTitle("Try it yourself!", for: .normal)
-		tryitYourselfButton.layer.cornerRadius = 10
-		tryitYourselfButton.translatesAutoresizingMaskIntoConstraints = false
-		return tryitYourselfButton
+		let button = UIButton(type: .system)
+		button.backgroundColor = .systemBlue
+		button.setTitle("Try it yourself!", for: .normal)
+		button.setTitleColor(.white, for: .normal)
+		button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
+		button.layer.cornerRadius = 14
+		button.layer.shadowColor = UIColor.systemBlue.cgColor
+		button.layer.shadowOpacity = 0.3
+		button.layer.shadowOffset = CGSize(width: 0, height: 4)
+		button.layer.shadowRadius = 8
+		button.translatesAutoresizingMaskIntoConstraints = false
+		return button
 	}()
-	
+
 	let switchCameraButton: UIButton = {
-		let switchCameraButton = UIButton()
-		switchCameraButton.backgroundColor = .systemBlue
-		switchCameraButton.tintColor = .white
-		switchCameraButton.setImage(UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill"), for: .normal)
-		switchCameraButton.layer.cornerRadius = 10
-		switchCameraButton.translatesAutoresizingMaskIntoConstraints = false
-		return switchCameraButton
+		let button = UIButton(type: .system)
+		button.backgroundColor = .systemBlue
+		button.tintColor = .white
+		button.setImage(UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill"), for: .normal)
+		button.imageView?.contentMode = .scaleAspectFit
+		button.layer.cornerRadius = 25
+		button.layer.shadowColor = UIColor.systemBlue.cgColor
+		button.layer.shadowOpacity = 0.3
+		button.layer.shadowOffset = CGSize(width: 0, height: 4)
+		button.layer.shadowRadius = 8
+		button.translatesAutoresizingMaskIntoConstraints = false
+		return button
 	}()
+
+	// MARK: - View Lifecycle
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		view.backgroundColor = .systemBackground
+		
+		tryitYourselfButton.addTarget(self, action: #selector(tryitYourselfButtonPressed), for: .touchUpInside)
+		switchCameraButton.addTarget(self, action: #selector(switchCameraButtonPressed), for: .touchUpInside)
+		
+		setupViews()
+		setupConstraints()
+		setupGestures()
+	}
+
+	// MARK: - Setup
+
+	private func setupViews() {
+		view.addSubview(alphabetImageView)
+		view.addSubview(gestureImageView)
+		view.addSubview(instructionsLabel)
+		view.addSubview(infoLabel)
+		view.addSubview(cameraView)
+		view.addSubview(tryitYourselfButton)
+		view.addSubview(switchCameraButton)
+		
+		countdownView.addSubview(countdownLabel)
+		countdownView.addSubview(loadingSpinner)
+		view.addSubview(countdownView)
+	}
+
+	private func setupConstraints() {
+		let imageSize = (UIScreen.main.bounds.width / 2) - 30
+		
+		NSLayoutConstraint.activate([
+			// Alphabet Image
+			alphabetImageView.widthAnchor.constraint(equalToConstant: imageSize),
+			alphabetImageView.heightAnchor.constraint(equalToConstant: imageSize),
+			alphabetImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+			alphabetImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+			
+			// Gesture Image
+			gestureImageView.widthAnchor.constraint(equalToConstant: imageSize),
+			gestureImageView.heightAnchor.constraint(equalToConstant: imageSize),
+			gestureImageView.leadingAnchor.constraint(equalTo: alphabetImageView.trailingAnchor, constant: 10),
+			gestureImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+			gestureImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+			
+			// Instructions Label
+			instructionsLabel.topAnchor.constraint(equalTo: alphabetImageView.bottomAnchor, constant: 24),
+			instructionsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+			instructionsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+			
+			// Info Label
+			infoLabel.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor, constant: 12),
+			infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+			infoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+			
+			// Try It Button
+			tryitYourselfButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			tryitYourselfButton.widthAnchor.constraint(equalToConstant: 220),
+			tryitYourselfButton.heightAnchor.constraint(equalToConstant: 50),
+			tryitYourselfButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 32),
+			
+			// Camera View
+			cameraView.widthAnchor.constraint(equalToConstant: 280),
+			cameraView.heightAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: 1.0),
+			cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			cameraView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+			
+			// Switch Camera Button
+			switchCameraButton.widthAnchor.constraint(equalToConstant: 50),
+			switchCameraButton.heightAnchor.constraint(equalTo: switchCameraButton.widthAnchor),
+			switchCameraButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+			switchCameraButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+			
+			// Countdown View
+			countdownView.widthAnchor.constraint(equalToConstant: 80),
+			countdownView.heightAnchor.constraint(equalToConstant: 80),
+			countdownView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+			countdownView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			
+			// Countdown Label
+			countdownLabel.centerYAnchor.constraint(equalTo: countdownView.centerYAnchor),
+			countdownLabel.centerXAnchor.constraint(equalTo: countdownView.centerXAnchor),
+			
+			// Loading Spinner
+			loadingSpinner.centerYAnchor.constraint(equalTo: countdownView.centerYAnchor),
+			loadingSpinner.centerXAnchor.constraint(equalTo: countdownView.centerXAnchor)
+		])
+	}
+
+	private func setupGestures() {
+		panGesture = UIPanGestureRecognizer(target: self, action: #selector(draggedView(_:)))
+		cameraView.isUserInteractionEnabled = true
+		cameraView.addGestureRecognizer(panGesture)
+	}
 	
 	var cameraOutput: AVCapturePhotoOutput!
 	var captureSession = AVCaptureSession()
@@ -122,75 +257,6 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 		
 		return aslClassifier
 	}()
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		tryitYourselfButton.addTarget(self, action: #selector(tryitYourselfButtonPressed), for: .touchUpInside)
-		switchCameraButton.addTarget(self, action: #selector(switchCameraButtonPressed), for: .touchUpInside)
-		
-		// Set up Views
-		view.addSubview(alphabetImageView)
-		view.addSubview(gestureImageView)
-		view.addSubview(instructionsLabel)
-		view.addSubview(infoLabel)
-		view.addSubview(cameraView)
-		view.addSubview(tryitYourselfButton)
-		view.addSubview(switchCameraButton)
-		view.addSubview(cameraView)
-		
-		countdownView.addSubview(countdownLabel)
-		view.addSubview(countdownView)
-		
-		// Set up Constraints
-		NSLayoutConstraint.activate([
-			alphabetImageView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width / 2) - 30),
-			alphabetImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-			alphabetImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-			alphabetImageView.heightAnchor.constraint(equalToConstant: 400),
-			
-			alphabetImageView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width / 2) - 30 ),
-			gestureImageView.leadingAnchor.constraint(equalTo: alphabetImageView.trailingAnchor, constant: 10),
-			gestureImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-			gestureImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-			gestureImageView.heightAnchor.constraint(equalToConstant: 400),
-			
-			instructionsLabel.topAnchor.constraint(equalTo: alphabetImageView.bottomAnchor, constant: 20),
-			instructionsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-			instructionsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-			
-			infoLabel.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor, constant: 20),
-			infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-			infoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-			
-			countdownView.widthAnchor.constraint(equalToConstant: 100),
-			countdownView.heightAnchor.constraint(equalToConstant: 100),
-			countdownView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-			countdownView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			
-			countdownLabel.centerYAnchor.constraint(equalTo: countdownView.centerYAnchor),
-			countdownLabel.centerXAnchor.constraint(equalTo: countdownView.centerXAnchor),
-			
-			switchCameraButton.widthAnchor.constraint(equalToConstant: 50),
-			switchCameraButton.heightAnchor.constraint(equalTo: switchCameraButton.widthAnchor),
-			switchCameraButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
-			switchCameraButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-			
-			tryitYourselfButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			tryitYourselfButton.widthAnchor.constraint(equalToConstant: 200),
-			tryitYourselfButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 40),
-			
-			cameraView.widthAnchor.constraint(equalToConstant: 300),
-			cameraView.heightAnchor.constraint(equalTo: cameraView.widthAnchor, multiplier: 1.0),
-			cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			cameraView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
-		])
-		
-		// Set up UIPanGestureRecognizer
-		panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.draggedView(_:)))
-		cameraView.isUserInteractionEnabled = true
-		cameraView.addGestureRecognizer(panGesture)
-	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		startCameraAndSession()
@@ -371,8 +437,6 @@ final class MainViewController: UIViewController, AVCapturePhotoCaptureDelegate 
 					settings.previewPhotoFormat = previewFormat
 					self.cameraOutput.capturePhoto(with: settings, delegate: self)
 				}
-				
-				self.countdownLabel.text = "Loading"
 			}
 		}
 	}

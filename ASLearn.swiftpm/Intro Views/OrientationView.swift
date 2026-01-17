@@ -12,6 +12,7 @@ struct OrientationView: View {
 	var body: some View {
 		NavigationView {
 			VStack {
+				Spacer()
 				HStack {
 					Spacer()
 					Image(systemName: "ipad")
@@ -45,20 +46,12 @@ struct OrientationView: View {
 					.padding()
 					.fixedSize(horizontal: false, vertical: true)
 				Spacer()
-				NavigationLink(destination: HandSelectionView().navigationBarHidden(true).navigationViewStyle(.stack), label: {
+				NavigationLink(destination: ExplanationView().navigationBarHidden(true).navigationViewStyle(.stack), label: {
 					Image(systemName: "arrow.right.circle.fill")
-						.resizable()
-						.aspectRatio(contentMode: .fit)
-						.frame(width: 50)
+						.font(.system(size: 60))
 						.foregroundColor(.blue)
 				})
 				Spacer()
-				Text("ASLearn requires iOS 15 or newer.")
-					.font(.system(size: 15))
-					.multilineTextAlignment(.center)
-					.foregroundColor(.secondary)
-					.padding()
-					.fixedSize(horizontal: false, vertical: true)
 			}
 		}
 		.navigationBarHidden(true)

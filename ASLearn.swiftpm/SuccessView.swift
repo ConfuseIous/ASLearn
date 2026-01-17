@@ -14,7 +14,6 @@ struct SuccessView: View {
 	
 	var body: some View {
 		VStack {
-			BaseViewTwo(isMainView: false, sharedViewModel: sharedViewModel)
 			Image(systemName: "hand.thumbsup.circle")
 				.resizable()
 				.frame(width: 100, height: 100)
@@ -26,6 +25,8 @@ struct SuccessView: View {
 			Text("You got it right!")
 				.font(.system(size: 25))
 				.padding()
+			Spacer()
+			BaseViewTwo(isMainView: false, sharedViewModel: sharedViewModel)
 			Spacer()
 			Button(action: {
 				if sharedViewModel.currentAlphabetIndex != sharedViewModel.alphabets.count - 1 {
